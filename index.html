@@ -1849,21 +1849,80 @@
     .v2-red-line, .spotify-note { color: #9feaff !important; }
     .heart { filter: drop-shadow(0 0 8px rgba(125,231,255,0.75)) drop-shadow(0 0 14px rgba(155,124,255,0.36)) !important; }
 
+
+    /* === No photo / no cats clean OOES interface === */
+    .cat-left-top, .cat-right-top, .cat-left-bottom, .cat-right-bottom, .signature-bg, .signature-card-bg { display: none !important; }
+    .no-photo-hero {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 22px;
+      align-items: center;
+      margin-bottom: 28px;
+      padding: 24px;
+      border-radius: 26px;
+      border: 1px solid rgba(125,231,255,0.22);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(125,231,255,0.16), transparent 36%),
+        linear-gradient(135deg, rgba(90,169,255,0.08), rgba(155,124,255,0.06));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 16px 40px rgba(0,0,0,0.25);
+    }
+    .moon-orb {
+      width: 96px;
+      height: 96px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #d6f4ff;
+      font-size: 58px;
+      border: 1px solid rgba(125,231,255,0.30);
+      background: radial-gradient(circle, rgba(125,231,255,0.20), rgba(155,124,255,0.08) 60%, rgba(0,0,0,0.24));
+      box-shadow: 0 0 34px rgba(125,231,255,0.22);
+    }
+    .no-photo-title {
+      color: #d6f4ff;
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .no-photo-text {
+      color: rgba(234,246,255,0.76);
+      line-height: 1.65;
+      font-size: 16px;
+    }
+    .v2-cat-glow { font-size: 104px !important; }
+    .music-links {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .music-links a {
+      display: block;
+      padding: 14px;
+      border-radius: 16px;
+      text-align: center;
+      text-decoration: none;
+      color: #eaf6ff;
+      border: 1px solid rgba(125,231,255,0.28);
+      background: rgba(190,225,255,0.06);
+      transition: 0.25s;
+    }
+    .music-links a:hover {
+      background: linear-gradient(135deg, rgba(90,169,255,0.22), rgba(155,124,255,0.14));
+      box-shadow: 0 0 18px rgba(90,169,255,0.18);
+    }
+    @media (max-width: 700px) {
+      .no-photo-hero, .music-links { grid-template-columns: 1fr; }
+      .moon-orb { margin: 0 auto; }
+    }
+
   </style>
 </head>
 
 <body>
-
-  <img src="Autograph.jpg" class="signature-bg parallax-soft" id="parallaxSignature">
   <div class="rain" id="rain"></div>
 
-  <img src="cats.jpg" class="cat-left-top">
-  <img src="cats2.jpg" class="cat-right-top">
-  <img src="cats3.jpg" class="cat-left-bottom">
-  <img src="cats4.jpg" class="cat-right-bottom">
-
   <main class="card">
-    <img src="Autograph.jpg" class="signature-card-bg" alt="">
     <section class="content">
       <div class="top-auth-row">
         <button class="menu-btn" id="menuToggleBtn" aria-label="Меню">☰</button>
@@ -1914,13 +1973,11 @@
       </div>
 
       <div class="tab active" id="letter">
-        <div class="slider parallax-soft" id="parallaxSlider">
-          <div class="slide-track">
-            <img src="photo1.jpg"><img src="photo2.jpg"><img src="photo3.jpg">
-            <img src="photo4.jpg"><img src="photo5.jpg"><img src="photo6.jpg">
-
-            <img src="photo1.jpg"><img src="photo2.jpg"><img src="photo3.jpg">
-            <img src="photo4.jpg"><img src="photo5.jpg"><img src="photo6.jpg">
+        <div class="no-photo-hero parallax-soft" id="parallaxSlider">
+          <div class="moon-orb">☾</div>
+          <div>
+            <div class="no-photo-title">холодная ночь для ooes</div>
+            <div class="no-photo-text">Без фотографий — только атмосфера, слова, музыка и маленькие фанатские воспоминания.</div>
           </div>
         </div>
 
@@ -1936,7 +1993,7 @@
               <div class="small" style="text-align:left;">— от фанатов</div>
             </div>
 
-            <div class="v2-cat-glow">🐈</div>
+            <div class="v2-cat-glow">☾</div>
           </div>
 
           <div class="v2-side-grid">
@@ -1954,7 +2011,7 @@
                   <span class="label">пожеланий</span>
                 </div>
                 <div>
-                  <div>🐾</div>
+                  <div>🌙</div>
                   <span class="num" id="onlineCount">0</span>
                   <span class="label">онлайн</span>
                 </div>
@@ -2183,24 +2240,17 @@ Email и UID обычным посетителям не показываются
 
       <div class="music-player">
         <div class="spotify-shell-title">
-          <strong>Сейчас играет</strong>
+          <strong>Музыка ooes</strong>
           <span class="spotify-note">♪</span>
         </div>
 
-        <div class="track-title">🎧 Spotify-плейлист ooes</div>
+        <div class="track-title">Плеер убран, чтобы не было чужого плейлиста. Здесь можно оставить официальные ссылки на музыку.</div>
 
-        <iframe
-          data-testid="embed-iframe"
-          style="border-radius:12px"
-          src="https://open.spotify.com/embed/playlist/6NySOoEjB8dVVNv6U4OswW?utm_source=generator"
-          width="100%"
-          height="352"
-          frameborder="0"
-          allowfullscreen=""
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy">
-        </iframe>
-
+        <div class="music-links">
+          <a href="https://open.spotify.com/search/ooes" target="_blank" rel="noopener">Spotify</a>
+          <a href="https://music.youtube.com/search?q=ooes" target="_blank" rel="noopener">YouTube Music</a>
+          <a href="https://music.apple.com/search?term=ooes" target="_blank" rel="noopener">Apple Music</a>
+        </div>
       </div>
 
       <script type="module">
@@ -2229,13 +2279,14 @@ Email и UID обычным посетителям не показываются
         } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
 
         const firebaseConfig = {
-          apiKey: "AIzaSyAnBQnt8bK-3G0zjNyIQsLY5s-_rjIV2Mk",
-          authDomain: "a-letter-for-ooes.firebaseapp.com",
-          databaseURL: "https://a-letter-for-ooes-default-rtdb.europe-west1.firebasedatabase.app",
-          projectId: "a-letter-for-ooes",
-          storageBucket: "a-letter-for-ooes.firebasestorage.app",
-          messagingSenderId: "479179895784",
-          appId: "1:479179895784:web:7f3bcd70ed9070c0816a5d"
+          apiKey: "AIzaSyDSP_YXjmBk7ghGTPKfmn0JXfuYPmqS-kk",
+          authDomain: "ooes-61f2e.firebaseapp.com",
+          databaseURL: "https://ooes-61f2e-default-rtdb.europe-west1.firebasedatabase.app",
+          projectId: "ooes-61f2e",
+          storageBucket: "ooes-61f2e.firebasestorage.app",
+          messagingSenderId: "106749560070",
+          appId: "1:106749560070:web:58eec137ef71932859ca87",
+          measurementId: "G-VR00J4Z0C7"
         };
 
         const app = initializeApp(firebaseConfig);
@@ -2321,7 +2372,7 @@ Email и UID обычным посетителям не показываются
           onDisconnect(userPresenceRef).remove();
         }
 
-        onValue(ref(db, "ooes/presence"), snapshot => {
+        onValue(ref(db, "presence"), snapshot => {
           const data = snapshot.val() || {};
           const online = Object.keys(data).length;
           const onlineBox = document.getElementById("onlineCount");
@@ -2477,19 +2528,19 @@ Email и UID обычным посетителям не показываются
           });
         });
 
-        onValue(ref(db, "ooes/stats/hearts"), snapshot => {
+        onValue(ref(db, "stats/hearts"), snapshot => {
           const el = document.getElementById("footerHeartsCount");
           if (el) el.textContent = snapshot.val() || 0;
         });
 
-        onValue(ref(db, "ooes/messages"), snapshot => {
+        onValue(ref(db, "messages"), snapshot => {
           const data = snapshot.val() || {};
           const count = Object.values(data).filter(item => item.status === "approved").length;
           const el = document.getElementById("footerWishesCount");
           if (el) el.textContent = count;
         });
 
-        onValue(ref(db, "ooes/stories"), snapshot => {
+        onValue(ref(db, "stories"), snapshot => {
           const data = snapshot.val() || {};
           const count = Object.values(data).filter(item => item.status === "approved").length;
           const el = document.getElementById("footerStoriesCount");
@@ -2523,7 +2574,7 @@ Email и UID обычным посетителям не показываются
         if (!sessionStorage.getItem(visitedKey)) {
           sessionStorage.setItem(visitedKey, "yes");
 
-          runTransaction(ref(db, "ooes/stats/views"), current => {
+          runTransaction(ref(db, "stats/views"), current => {
             return (current || 0) + 1;
           });
         }
@@ -2588,7 +2639,7 @@ Email и UID обычным посетителям не показываются
             return;
           }
 
-          const newMessageRef = push(ref(db, "ooes/messages"));
+          const newMessageRef = push(ref(db, "messages"));
 
           await set(newMessageRef, {
             userId: userId,
@@ -2628,7 +2679,7 @@ Email и UID обычным посетителям не показываются
             return;
           }
 
-          const newStoryRef = push(ref(db, "ooes/stories"));
+          const newStoryRef = push(ref(db, "stories"));
 
           await set(newStoryRef, {
             userId: userId,
@@ -2668,7 +2719,7 @@ Email и UID обычным посетителям не показываются
             return;
           }
 
-          const newFeedbackRef = push(ref(db, "ooes/feedback"));
+          const newFeedbackRef = push(ref(db, "feedback"));
 
           await set(newFeedbackRef, {
             userId: userId,
@@ -2687,13 +2738,13 @@ Email и UID обычным посетителям не показываются
         });
 
 
-        onValue(ref(db, "ooes/stats/hearts"), snapshot => {
+        onValue(ref(db, "stats/hearts"), snapshot => {
           const value = snapshot.val() || 0;
           const homeHearts = document.getElementById("homeHeartsCount");
           if (homeHearts) homeHearts.textContent = value;
         });
 
-        onValue(ref(db, "ooes/messages"), snapshot => {
+        onValue(ref(db, "messages"), snapshot => {
           const box = document.getElementById("approvedMessages");
           box.innerHTML = "";
           const messages = snapshot.val();
@@ -2759,7 +2810,7 @@ Email и UID обычным посетителям не показываются
         let approvedStories = [];
         let currentStory = 0;
 
-        onValue(ref(db, "ooes/stories"), snapshot => {
+        onValue(ref(db, "stories"), snapshot => {
           const data = snapshot.val();
 
           const box = document.getElementById("storyContainer");
@@ -2827,7 +2878,7 @@ Email и UID обычным посетителям не показываются
           renderStory();
         });
 
-        onValue(ref(db, "ooes/users"), snapshot => {
+        onValue(ref(db, "users"), snapshot => {
           const users = snapshot.val();
           const topHeartsBox = document.getElementById("topHearts");
 
@@ -2901,7 +2952,7 @@ Email и UID обычным посетителям не показываются
 
           lastHeartClick = now;
 
-          runTransaction(ref(db, "ooes/stats/hearts"), current => {
+          runTransaction(ref(db, "stats/hearts"), current => {
             return (current || 0) + 1;
           });
 
