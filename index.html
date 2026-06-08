@@ -1916,7 +1916,152 @@
       .moon-orb { margin: 0 auto; }
     }
 
-  </style>
+  
+/* === OOES FULL DARK COLD THEME FINAL OVERRIDE === */
+:root {
+  --bg: #02050c !important;
+  --bg-red: #030814 !important;
+  --dark-red: #030814 !important;
+  --card: rgba(7, 13, 26, 0.88) !important;
+  --panel: rgba(160, 205, 255, 0.055) !important;
+  --panel-strong: rgba(160, 205, 255, 0.105) !important;
+  --text: #eaf6ff !important;
+  --muted: rgba(234, 246, 255, 0.70) !important;
+  --red: #5aa9ff !important;
+  --red-hot: #8feaff !important;
+  --orange: #7d8cff !important;
+  --orange-main: #5aa9ff !important;
+  --orange-hot: #9feaff !important;
+  --orange-soft: #b8f3ff !important;
+  --gold: #83bfff !important;
+  --gold-soft: #d6f4ff !important;
+  --border: rgba(125, 231, 255, 0.24) !important;
+  --border-red: rgba(125, 231, 255, 0.32) !important;
+  --border-orange: rgba(125, 231, 255, 0.36) !important;
+  --glow-red: rgba(90, 169, 255, 0.18) !important;
+  --glow-orange: rgba(155, 124, 255, 0.14) !important;
+}
+
+html, body {
+  background:
+    radial-gradient(circle at 14% 8%, rgba(90,169,255,0.20), transparent 31%),
+    radial-gradient(circle at 78% 14%, rgba(155,124,255,0.14), transparent 35%),
+    radial-gradient(circle at 50% 100%, rgba(125,231,255,0.10), transparent 46%),
+    linear-gradient(135deg, #02050c, #06101e 48%, #02050c) !important;
+  color: #eaf6ff !important;
+}
+
+.card,
+.box,
+.panel,
+.stat-box,
+.message-item,
+.top-item,
+.story-card,
+.music-player,
+.v2-welcome,
+.v2-side-grid > *,
+.v2-latest-item,
+.footer-stat,
+.site-footer,
+.side-menu,
+input,
+textarea,
+select {
+  background:
+    linear-gradient(145deg, rgba(90,169,255,0.040), rgba(155,124,255,0.025)),
+    rgba(7,13,26,0.88) !important;
+  border-color: rgba(125,231,255,0.24) !important;
+  color: #eaf6ff !important;
+  box-shadow:
+    0 0 32px rgba(90,169,255,0.11),
+    0 18px 60px rgba(0,0,0,0.62) !important;
+}
+
+.card::before,
+.box::before {
+  background:
+    radial-gradient(circle at 10% 0%, rgba(90,169,255,0.14), transparent 32%),
+    radial-gradient(circle at 90% 12%, rgba(155,124,255,0.12), transparent 37%),
+    radial-gradient(circle at 50% 100%, rgba(125,231,255,0.10), transparent 40%) !important;
+}
+
+.card::after {
+  background: linear-gradient(135deg, rgba(125,231,255,0.34), rgba(90,169,255,0.22), rgba(155,124,255,0.16)) !important;
+}
+
+h1, h2, h3,
+.message-name,
+.story-title,
+.title,
+.quote,
+.footer-logo,
+.spotify-shell-title strong,
+.v2-welcome h2,
+.v2-universe .num,
+.v2-latest-name {
+  color: #d6f4ff !important;
+  text-shadow:
+    0 0 14px rgba(125,231,255,0.22),
+    0 0 32px rgba(90,169,255,0.14) !important;
+}
+
+.tab-btn,
+.save-btn,
+.send-btn,
+.auth-btn,
+.wish-arrow,
+.story-arrow,
+.menu-btn,
+.side-menu button,
+.footer-link,
+.player-buttons button,
+button {
+  background: rgba(160,205,255,0.055) !important;
+  color: #eaf6ff !important;
+  border-color: rgba(125,231,255,0.26) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 0 12px rgba(90,169,255,0.08) !important;
+}
+
+.tab-btn.active,
+.tab-btn:hover,
+.save-btn:hover,
+.send-btn:hover,
+.auth-btn:hover,
+.wish-arrow:hover,
+.story-arrow:hover,
+.menu-btn:hover,
+.side-menu button:hover,
+.footer-link:hover,
+.player-buttons button:hover,
+button:hover {
+  background: linear-gradient(135deg, rgba(90,169,255,0.24), rgba(155,124,255,0.16)) !important;
+  border-color: rgba(125,231,255,0.48) !important;
+  box-shadow: 0 0 18px rgba(90,169,255,0.18) !important;
+}
+
+.v2-red-line,
+.spotify-note,
+.heart,
+.v2-cat-glow {
+  color: #9feaff !important;
+  text-shadow: 0 0 18px rgba(125,231,255,0.34) !important;
+}
+
+.drop {
+  background: linear-gradient(transparent, rgba(125,231,255,0.22), rgba(155,124,255,0.10)) !important;
+}
+
+.spotify-embed-wrap {
+  margin-top: 18px;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid rgba(125,231,255,0.24);
+  background: rgba(0,0,0,0.22);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.38), 0 0 22px rgba(90,169,255,0.10);
+}
+
+</style>
 </head>
 
 <body>
@@ -2240,20 +2385,32 @@ Email и UID обычным посетителям не показываются
         </div>
       </div>
 
-      <div class="music-player">
-        <div class="spotify-shell-title">
-          <strong>🌙 Саундтрек этого места</strong>
-          <span class="spotify-note">♪</span>
-        </div>
+      
+<div class="music-player">
+  <div class="spotify-shell-title">
+    <strong>🌙 Саундтрек этого места</strong>
+    <span class="spotify-note">♪</span>
+  </div>
 
-        <div class="track-title">Иногда одна песня может напомнить целую историю. Ниже собран плейлист с музыкой ooes.</div>
+  <p style="text-align:center; opacity:0.82; margin-bottom:18px;">
+    Иногда одна песня может напомнить целую историю. Ниже собран плейлист с музыкой ooes.
+  </p>
 
-        <div class="music-links">
-          <a href="https://open.spotify.com/search/ooes" target="_blank" rel="noopener">Spotify</a>
-          <a href="https://music.youtube.com/search?q=ooes" target="_blank" rel="noopener">YouTube Music</a>
-          <a href="https://music.apple.com/search?term=ooes" target="_blank" rel="noopener">Apple Music</a>
-        </div>
-      </div>
+  <div class="spotify-embed-wrap">
+    <iframe
+      data-testid="embed-iframe"
+      style="border-radius:12px"
+      src="https://open.spotify.com/embed/playlist/4v515v3HCoxkURzVuP5HSW?utm_source=generator"
+      width="100%"
+      height="352"
+      frameborder="0"
+      allowfullscreen=""
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy">
+    </iframe>
+  </div>
+</div>
+
 
       <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
