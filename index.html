@@ -1,0 +1,2950 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Для ooes</title>
+
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+      color: #f4eee6;
+      background:
+        radial-gradient(circle at top, rgba(120,70,160,0.18), transparent 35%),
+        linear-gradient(135deg, #07070a, #140b18 45%, #030304);
+      font-family: "Literata", serif;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .signature-bg {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 1350px;
+      max-width: none;
+      transform: translate(-50%, -50%) rotate(-5deg);
+      opacity: 0.16;
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
+      filter:
+        drop-shadow(0 0 18px rgba(255,255,255,0.16))
+        drop-shadow(0 0 38px rgba(160,90,255,0.14));
+    }
+
+    .rain {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .drop {
+      position: absolute;
+      top: -120px;
+      width: 1px;
+      height: 90px;
+      background: linear-gradient(transparent, rgba(255,255,255,0.28));
+      animation: rainFall linear infinite;
+      opacity: 0.45;
+    }
+
+    @keyframes rainFall { to { transform: translateY(120vh); } }
+
+    .cat-left-top,
+    .cat-right-top,
+    .cat-left-bottom,
+    .cat-right-bottom {
+      position: fixed;
+      width: 210px;
+      height: 210px;
+      object-fit: cover;
+      border-radius: 28px;
+      z-index: 3;
+      pointer-events: none;
+      opacity: 0.9;
+    }
+
+    .cat-left-top { left: -45px; top: 45px; }
+    .cat-right-top { right: -45px; top: 45px; }
+    .cat-left-bottom { left: -45px; bottom: 45px; }
+    .cat-right-bottom { right: -45px; bottom: 45px; }
+
+    .card {
+      width: min(900px, 100%);
+      padding: 42px 32px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 28px;
+      background: rgba(8,8,12,0.32);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow:
+        0 0 40px rgba(180,120,255,0.08),
+        0 24px 80px rgba(0,0,0,0.45);
+      position: relative;
+      overflow: hidden;
+      z-index: 5;
+    }
+
+    .content { position: relative; z-index: 1; }
+
+    h1 {
+      margin: 0 0 26px;
+      font-family: "UnifrakturMaguntia", serif;
+      font-size: clamp(48px, 10vw, 86px);
+      font-weight: 400;
+      text-align: center;
+      color: #fff7ec;
+    }
+
+    .tabs {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .tab-btn {
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      color: #f4eee6;
+      cursor: pointer;
+      font-family: "Literata", serif;
+    }
+
+    .tab-btn.active { background: rgba(255,255,255,0.16); }
+
+    .tab { display: none; }
+    .tab.active { display: block; }
+
+    .slider {
+      width: 100%;
+      overflow: hidden;
+      margin-bottom: 32px;
+      border-radius: 24px;
+    }
+
+    .slide-track {
+      display: flex;
+      gap: 18px;
+      width: max-content;
+      animation: scroll 50s linear infinite;
+    }
+
+    .slide-track img {
+      width: 300px;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 22px;
+      flex-shrink: 0;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+    }
+
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-1908px); }
+    }
+
+    p {
+      margin: 0 0 18px;
+      font-size: clamp(17px, 2.5vw, 21px);
+      line-height: 1.75;
+    }
+
+    .quote {
+      margin-top: 30px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,0.18);
+      font-family: "UnifrakturMaguntia", serif;
+      font-size: clamp(24px, 5vw, 38px);
+      text-align: center;
+      opacity: 0.9;
+    }
+
+    .small, .stats {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 14px;
+      opacity: 0.75;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .stat-box, .panel, .message-item, .top-item {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .panel { margin-top: 20px; }
+
+    input, textarea, select {
+      width: 100%;
+      margin-top: 10px;
+      padding: 13px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.25);
+      color: #f4eee6;
+      font-family: "Literata", serif;
+      font-size: 15px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    button { font-family: "Literata", serif; }
+
+    .save-btn,
+    .send-btn,
+    .auth-btn {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.06);
+      color: #f4eee6;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .save-btn:hover,
+    .send-btn:hover,
+    .auth-btn:hover {
+      background: rgba(255,255,255,0.12);
+    }
+
+    .auth-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .auth-status {
+      margin-top: 12px;
+      text-align: center;
+      font-size: 14px;
+      opacity: 0.75;
+      word-break: break-word;
+    }
+
+    .music-player {
+      margin-top: 30px;
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+    }
+
+    .track-title {
+      text-align: center;
+      margin-bottom: 14px;
+      opacity: 0.88;
+      font-size: 15px;
+    }
+
+    .player-buttons {
+      display: grid;
+      grid-template-columns: 70px 1fr 70px;
+      gap: 10px;
+    }
+
+    .player-buttons button {
+      padding: 14px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.06);
+      color: #f4eee6;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .player-buttons button:hover {
+      background: rgba(255,255,255,0.13);
+    }
+
+    .volume-control,
+    .progress-control {
+      width: 100%;
+      accent-color: white;
+      cursor: pointer;
+    }
+
+    .progress-control { margin-top: 16px; }
+
+    .time-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+      font-size: 12px;
+      opacity: 0.65;
+    }
+
+    .volume-label {
+      margin-top: 14px;
+      font-size: 13px;
+      opacity: 0.75;
+      text-align: center;
+    }
+
+    .wishes-slider-wrap {
+      display: grid;
+      grid-template-columns: 44px 1fr 44px;
+      gap: 10px;
+      align-items: center;
+      margin-top: 18px;
+    }
+
+    .wishes-slider {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 8px;
+    }
+
+    .wishes-slider::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .wish-arrow {
+      height: 44px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      color: #f4eee6;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    .wish-arrow:hover {
+      background: rgba(255,255,255,0.14);
+    }
+
+    .message-item {
+      margin-top: 12px;
+      min-width: 280px;
+      max-width: 320px;
+      flex-shrink: 0;
+    }
+
+    .message-name {
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #f1c9ff;
+    }
+
+    .message-text {
+      opacity: 0.9;
+      line-height: 1.55;
+      white-space: pre-wrap;
+    }
+
+    .story-form-title {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .story-viewer {
+      display: grid;
+      grid-template-columns: 54px 1fr 54px;
+      gap: 12px;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .story-arrow {
+      height: 54px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      color: #f4eee6;
+      font-size: 26px;
+      cursor: pointer;
+    }
+
+    .story-arrow:hover {
+      background: rgba(255,255,255,0.14);
+    }
+
+    .story-card {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .story-title {
+      font-weight: 700;
+      color: #f1c9ff;
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+
+    .story-author {
+      opacity: 0.7;
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+
+    .story-text {
+      opacity: 0.9;
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+
+    .story-counter {
+      text-align: center;
+      opacity: 0.65;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
+    .top-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 24px;
+      pointer-events: none;
+      animation: floatUp 2s linear forwards;
+      z-index: 9999;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translate(-50%, -180px) scale(1.8) rotate(20deg);
+        opacity: 0;
+      }
+    }
+
+
+    .datenschutz-text {
+      line-height: 1.7;
+      opacity: 0.9;
+      white-space: pre-wrap;
+    }
+
+    .parallax-soft {
+      will-change: transform;
+      transition: transform 0.08s linear;
+    }
+
+    .feedback-type {
+      margin-top: 10px;
+    }
+
+    @media (max-width: 900px) {
+      .signature-bg {
+        width: 1050px;
+        opacity: 0.12;
+      }
+
+      .cat-left-top,
+      .cat-right-top,
+      .cat-left-bottom,
+      .cat-right-bottom {
+        width: 115px;
+        height: 115px;
+        opacity: 0.65;
+      }
+
+      .cat-left-top { left: -55px; top: 25px; }
+      .cat-right-top { right: -55px; top: 25px; }
+      .cat-left-bottom { left: -55px; bottom: 25px; }
+      .cat-right-bottom { right: -55px; bottom: 25px; }
+
+      .stats-grid,
+      .tabs,
+      .auth-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .player-buttons {
+        grid-template-columns: 56px 1fr 56px;
+      }
+
+      .story-viewer {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    :root {
+      --bg: #030303;
+      --bg-red: #170605;
+      --card: rgba(6, 5, 4, 0.78);
+      --panel: rgba(255, 232, 196, 0.055);
+      --panel-strong: rgba(255, 232, 196, 0.10);
+      --text: #f5e2c4;
+      --muted: rgba(245, 226, 196, 0.72);
+      --red: #c82f22;
+      --red-hot: #ff3b2f;
+      --orange: #e06f2f;
+      --gold: #c99b5a;
+      --gold-soft: #e0bd82;
+      --border: rgba(201, 155, 90, 0.24);
+      --border-red: rgba(255, 59, 47, 0.34);
+      --glow-red: rgba(255, 59, 47, 0.22);
+      --glow-orange: rgba(224, 111, 47, 0.18);
+    }
+
+    body {
+      color: var(--text);
+      background:
+        radial-gradient(circle at 14% 8%, rgba(255,59,47,0.22), transparent 30%),
+        radial-gradient(circle at 78% 14%, rgba(224,111,47,0.18), transparent 34%),
+        radial-gradient(circle at 52% 96%, rgba(126,23,18,0.24), transparent 44%),
+        linear-gradient(135deg, #020202, #090403 46%, var(--bg-red)) !important;
+    }
+
+    .signature-bg {
+      opacity: 0.16;
+      filter:
+        drop-shadow(0 0 18px rgba(255,59,47,0.18))
+        drop-shadow(0 0 36px rgba(201,155,90,0.12)) !important;
+    }
+
+    .drop {
+      background: linear-gradient(transparent, rgba(255,59,47,0.22), rgba(201,155,90,0.12)) !important;
+    }
+
+    .card {
+      width: min(1180px, 100%) !important;
+      border: 1px solid var(--border) !important;
+      background:
+        linear-gradient(145deg, rgba(255,59,47,0.040), rgba(201,155,90,0.025)),
+        var(--card) !important;
+      box-shadow:
+        0 0 44px var(--glow-red),
+        0 0 76px rgba(201,155,90,0.12),
+        0 26px 92px rgba(0,0,0,0.72) !important;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(255,59,47,0.18), transparent 30%),
+        radial-gradient(circle at 90% 12%, rgba(224,111,47,0.16), transparent 36%),
+        radial-gradient(circle at 50% 100%, rgba(126,23,18,0.18), transparent 38%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(201,155,90,0.48), rgba(255,59,47,0.36), rgba(224,111,47,0.20));
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      opacity: 0.72;
+      z-index: 0;
+    }
+
+    h1 {
+      color: var(--gold-soft) !important;
+      text-shadow:
+        0 0 16px rgba(201,155,90,0.26),
+        0 0 34px rgba(255,59,47,0.20),
+        0 0 58px rgba(0,0,0,0.70);
+    }
+
+    .v2-heart-mark {
+      width: 68px;
+      height: 68px;
+      margin: 0 auto 12px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--red-hot);
+      font-size: 32px;
+      border: 1px solid rgba(255,59,47,0.34);
+      background:
+        radial-gradient(circle, rgba(255,59,47,0.16), transparent 66%),
+        rgba(0,0,0,0.22);
+      box-shadow: 0 0 26px rgba(255,59,47,0.20);
+    }
+
+    .tabs {
+      padding: 10px;
+      border-radius: 18px;
+      background: rgba(0,0,0,0.20);
+      border: 1px solid rgba(201,155,90,0.12);
+    }
+
+    .tab-btn,
+    .save-btn,
+    .send-btn,
+    .auth-btn,
+    .wish-arrow,
+    .story-arrow {
+      color: var(--text) !important;
+      border-color: var(--border) !important;
+      background: rgba(255,232,196,0.045) !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        0 0 12px rgba(255,59,47,0.05);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, rgba(199,47,34,0.46), rgba(126,23,18,0.32)) !important;
+      border-color: rgba(255,59,47,0.45) !important;
+      color: #fff1d9 !important;
+      box-shadow:
+        0 0 18px rgba(255,59,47,0.24),
+        inset 0 0 20px rgba(201,155,90,0.08);
+    }
+
+    .tab-btn:hover,
+    .save-btn:hover,
+    .send-btn:hover,
+    .auth-btn:hover,
+    .wish-arrow:hover,
+    .story-arrow:hover {
+      background: linear-gradient(135deg, rgba(199,47,34,0.28), rgba(224,111,47,0.14)) !important;
+      border-color: rgba(255,59,47,0.36) !important;
+    }
+
+    .panel,
+    .stat-box,
+    .message-item,
+    .top-item,
+    .story-card,
+    .music-player {
+      background: var(--panel) !important;
+      border: 1px solid rgba(201,155,90,0.18) !important;
+      box-shadow: 0 12px 34px rgba(0,0,0,0.26);
+    }
+
+    input, textarea, select {
+      color: var(--text) !important;
+      border-color: rgba(201,155,90,0.22) !important;
+      background: rgba(3,3,3,0.56) !important;
+    }
+
+    .message-name,
+    .story-title {
+      color: var(--gold-soft) !important;
+    }
+
+    .quote {
+      color: var(--gold-soft);
+      border-top-color: rgba(201,155,90,0.28) !important;
+      text-shadow: 0 0 18px rgba(255,59,47,0.16);
+    }
+
+    .slide-track img {
+      border: 1px solid rgba(201,155,90,0.24);
+      filter: saturate(1.08) contrast(1.04);
+      transition: 0.25s ease;
+    }
+
+    .slide-track img:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 12px 42px rgba(0,0,0,0.58),
+        0 0 28px rgba(255,59,47,0.24),
+        0 0 20px rgba(201,155,90,0.16);
+    }
+
+    .v2-home-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.85fr;
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .v2-welcome {
+      min-height: 230px;
+      display: grid;
+      grid-template-columns: 1fr 190px;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .v2-welcome h2 {
+      margin: 0 0 12px;
+      color: var(--gold-soft);
+      font-size: clamp(24px, 4vw, 36px);
+    }
+
+    .v2-red-line {
+      color: var(--red-hot);
+      font-size: clamp(20px, 3vw, 28px);
+      margin-top: 14px;
+      text-shadow: 0 0 16px rgba(255,59,47,0.24);
+    }
+
+    .v2-cat-glow {
+      height: 180px;
+      display: grid;
+      place-items: center;
+      color: var(--red-hot);
+      font-size: 98px;
+      text-shadow:
+        0 0 18px rgba(255,59,47,0.55),
+        0 0 34px rgba(224,111,47,0.22);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle, rgba(255,59,47,0.12), transparent 62%),
+        rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,59,47,0.18);
+    }
+
+    .v2-side-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .v2-universe {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      text-align: center;
+    }
+
+    .v2-universe .num {
+      display: block;
+      margin-top: 8px;
+      font-size: 28px;
+      color: var(--gold-soft);
+    }
+
+    .v2-universe .label {
+      display: block;
+      margin-top: 3px;
+      font-size: 13px;
+      opacity: 0.75;
+    }
+
+    .v2-latest-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .v2-latest-item {
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(201,155,90,0.12);
+    }
+
+    .v2-latest-name {
+      color: var(--gold-soft);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .spotify-shell-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .spotify-shell-title strong {
+      color: var(--gold-soft);
+      font-size: 20px;
+    }
+
+    .spotify-note {
+      color: var(--red-hot);
+      font-size: 22px;
+      text-shadow: 0 0 12px rgba(255,59,47,0.35);
+    }
+
+    .heart {
+      filter:
+        drop-shadow(0 0 8px rgba(255,62,47,0.76))
+        drop-shadow(0 0 14px rgba(201,155,90,0.30));
+    }
+
+    @media (max-width: 900px) {
+      .v2-home-grid,
+      .v2-welcome {
+        grid-template-columns: 1fr;
+      }
+
+      .v2-universe {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    /* === V2.1: warm #cf6f02 gradient accent === */
+    :root {
+      --orange-main: #cf6f02;
+      --orange-hot: #ff8a18;
+      --orange-soft: #f2b36a;
+      --dark-red: #2a0805;
+    }
+
+    .card {
+      box-shadow:
+        0 0 42px rgba(207,111,2,0.22),
+        0 0 72px rgba(255,59,47,0.14),
+        0 26px 92px rgba(0,0,0,0.72) !important;
+    }
+
+    .card::after {
+      background: linear-gradient(
+        135deg,
+        rgba(207,111,2,0.60),
+        rgba(255,59,47,0.36),
+        rgba(242,179,106,0.22)
+      ) !important;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 14% 8%, rgba(207,111,2,0.26), transparent 30%),
+        radial-gradient(circle at 78% 14%, rgba(255,138,24,0.18), transparent 34%),
+        radial-gradient(circle at 52% 96%, rgba(126,23,18,0.24), transparent 44%),
+        linear-gradient(135deg, #020202, #090403 46%, var(--dark-red)) !important;
+    }
+
+    .tab-btn.active,
+    .save-btn:hover,
+    .send-btn:hover,
+    .auth-btn:hover,
+    .wish-arrow:hover,
+    .story-arrow:hover {
+      background: linear-gradient(
+        135deg,
+        rgba(207,111,2,0.38),
+        rgba(199,47,34,0.28)
+      ) !important;
+      border-color: rgba(207,111,2,0.50) !important;
+      box-shadow:
+        0 0 18px rgba(207,111,2,0.24),
+        inset 0 0 20px rgba(242,179,106,0.08) !important;
+    }
+
+    .v2-red-line {
+      color: var(--orange-hot) !important;
+      text-shadow: 0 0 16px rgba(207,111,2,0.34) !important;
+    }
+
+    .v2-cat-glow {
+      color: var(--orange-hot) !important;
+      text-shadow:
+        0 0 18px rgba(207,111,2,0.70),
+        0 0 34px rgba(255,59,47,0.28) !important;
+      border-color: rgba(207,111,2,0.28) !important;
+      background:
+        radial-gradient(circle, rgba(207,111,2,0.16), transparent 62%),
+        rgba(0,0,0,0.18) !important;
+    }
+
+    .heart {
+      filter:
+        drop-shadow(0 0 8px rgba(207,111,2,0.82))
+        drop-shadow(0 0 14px rgba(255,59,47,0.42)) !important;
+    }
+
+
+    /* === V2.2: compact top-right menu === */
+    .menu-btn {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      width: 48px;
+      height: 48px;
+      border-radius: 15px;
+      border: 1px solid rgba(207,111,2,0.38);
+      background:
+        linear-gradient(135deg, rgba(207,111,2,0.18), rgba(199,47,34,0.13)),
+        rgba(0,0,0,0.28);
+      color: #f5d6aa;
+      font-size: 26px;
+      cursor: pointer;
+      z-index: 20;
+      display: grid;
+      place-items: center;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        0 0 18px rgba(207,111,2,0.14);
+    }
+
+    .menu-btn:hover {
+      box-shadow:
+        0 0 20px rgba(207,111,2,0.28),
+        0 0 35px rgba(199,47,34,0.16);
+      background:
+        linear-gradient(135deg, rgba(207,111,2,0.30), rgba(199,47,34,0.18)),
+        rgba(0,0,0,0.28);
+    }
+
+    .side-menu {
+      position: absolute;
+      top: 80px;
+      right: 22px;
+      width: min(320px, calc(100vw - 44px));
+      padding: 16px;
+      border-radius: 22px;
+      border: 1px solid rgba(207,111,2,0.34);
+      background:
+        linear-gradient(145deg, rgba(31,9,6,0.96), rgba(7,5,4,0.96)),
+        rgba(0,0,0,0.88);
+      box-shadow:
+        0 18px 60px rgba(0,0,0,0.55),
+        0 0 28px rgba(207,111,2,0.16);
+      z-index: 19;
+      display: none;
+    }
+
+    .side-menu.open {
+      display: block;
+      animation: menuDrop 0.22s ease both;
+    }
+
+    @keyframes menuDrop {
+      from {
+        transform: translateY(-8px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .side-menu-title {
+      color: var(--gold-soft, #e2bf83);
+      font-size: 20px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .side-menu-divider {
+      height: 1px;
+      background: rgba(207,111,2,0.24);
+      margin: 12px 0;
+    }
+
+    .side-menu button {
+      width: 100%;
+      margin-top: 8px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(201,155,90,0.22);
+      background: rgba(255,231,199,0.045);
+      color: var(--text, #f5e7d1);
+      cursor: pointer;
+      font-family: "Literata", serif;
+      font-size: 15px;
+      text-align: left;
+    }
+
+    .side-menu button:hover {
+      background: linear-gradient(135deg, rgba(207,111,2,0.24), rgba(199,47,34,0.14));
+      border-color: rgba(207,111,2,0.46);
+    }
+
+    .tabs.compact-tabs {
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .menu-btn {
+        top: 14px;
+        right: 14px;
+      }
+
+      .side-menu {
+        top: 70px;
+        right: 14px;
+      }
+
+      .tabs.compact-tabs {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    /* === V2.3: auth moved into top-right menu === */
+    .top-auth-row {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 22;
+    }
+
+    .top-auth-row .menu-btn {
+      position: static;
+      top: auto;
+      right: auto;
+    }
+
+    .online-badge {
+      min-height: 48px;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid rgba(207,111,2,0.38);
+      background:
+        linear-gradient(135deg, rgba(207,111,2,0.16), rgba(199,47,34,0.10)),
+        rgba(0,0,0,0.28);
+      color: #f5d6aa;
+      font-size: 15px;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        0 0 18px rgba(207,111,2,0.12);
+      white-space: nowrap;
+    }
+
+    .online-badge.online {
+      color: #b9ffbd;
+      border-color: rgba(72, 220, 96, 0.32);
+      background:
+        linear-gradient(135deg, rgba(32,130,52,0.22), rgba(207,111,2,0.08)),
+        rgba(0,0,0,0.28);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        0 0 18px rgba(72, 220, 96, 0.13);
+    }
+
+    .menu-auth-status {
+      margin: 8px 0 10px;
+      text-align: center;
+      font-size: 13px;
+      opacity: 0.78;
+      word-break: break-word;
+    }
+
+    .side-menu input {
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    .side-menu .auth-btn {
+      margin-top: 8px;
+      font-size: 15px;
+      padding: 12px 14px;
+      text-align: center;
+    }
+
+    .menu-auth-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .top-auth-row {
+        top: 14px;
+        right: 14px;
+      }
+
+      .online-badge {
+        min-height: 44px;
+        font-size: 13px;
+        padding: 0 12px;
+      }
+    }
+
+
+    /* === V2.5: mobile layout fix === */
+    @media (max-width: 900px) {
+      body {
+        padding: 12px 8px !important;
+        align-items: flex-start !important;
+      }
+
+      .card {
+        width: 100% !important;
+        padding: 84px 14px 24px !important;
+        border-radius: 24px !important;
+        overflow: hidden !important;
+      }
+
+      h1 {
+        font-size: clamp(48px, 17vw, 72px) !important;
+        line-height: 0.95 !important;
+        margin-bottom: 24px !important;
+      }
+
+      .v2-heart-mark {
+        width: 54px !important;
+        height: 54px !important;
+        font-size: 26px !important;
+        margin-bottom: 10px !important;
+      }
+
+      .top-auth-row {
+        top: 18px !important;
+        right: 14px !important;
+        left: auto !important;
+        gap: 8px !important;
+      }
+
+      .online-badge {
+        min-height: 42px !important;
+        padding: 0 12px !important;
+        font-size: 14px !important;
+      }
+
+      .menu-btn {
+        width: 46px !important;
+        height: 46px !important;
+        font-size: 24px !important;
+      }
+
+      .side-menu {
+        position: fixed !important;
+        top: 74px !important;
+        left: 12px !important;
+        right: 12px !important;
+        width: auto !important;
+        max-height: calc(100vh - 92px) !important;
+        overflow-y: auto !important;
+        border-radius: 22px !important;
+        padding: 14px !important;
+      }
+
+      .side-menu button,
+      .side-menu input,
+      .side-menu .auth-btn {
+        font-size: 16px !important;
+      }
+
+      .tabs.compact-tabs {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        padding: 12px !important;
+      }
+
+      .tab-btn {
+        font-size: 20px !important;
+        padding: 16px !important;
+      }
+
+      .slider {
+        margin-top: 18px !important;
+        margin-bottom: 24px !important;
+        border-radius: 22px !important;
+      }
+
+      .slide-track {
+        gap: 12px !important;
+        animation-duration: 42s !important;
+      }
+
+      .slide-track img {
+        width: 230px !important;
+        height: 330px !important;
+        border-radius: 22px !important;
+      }
+
+      @keyframes scroll {
+        from { transform: translateX(0); }
+        to { transform: translateX(-1452px); }
+      }
+
+      .v2-home-grid,
+      .v2-welcome,
+      .v2-side-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .panel,
+      .music-player,
+      .story-card,
+      .message-item,
+      .top-item {
+        border-radius: 22px !important;
+      }
+
+      .v2-welcome {
+        min-height: auto !important;
+        padding: 26px 20px !important;
+        gap: 18px !important;
+      }
+
+      .v2-welcome h2,
+      .story-form-title,
+      .spotify-shell-title strong {
+        font-size: 28px !important;
+        line-height: 1.15 !important;
+      }
+
+      p {
+        font-size: 22px !important;
+        line-height: 1.55 !important;
+      }
+
+      .v2-red-line {
+        font-size: 23px !important;
+        line-height: 1.35 !important;
+      }
+
+      .v2-cat-glow {
+        height: 110px !important;
+        font-size: 62px !important;
+      }
+
+      .v2-universe {
+        grid-template-columns: 1fr !important;
+        gap: 18px !important;
+      }
+
+      .v2-universe .num {
+        font-size: 42px !important;
+      }
+
+      .v2-universe .label {
+        font-size: 18px !important;
+      }
+
+      .v2-latest-item,
+      .message-item {
+        min-width: 0 !important;
+        max-width: none !important;
+        width: 100% !important;
+        font-size: 21px !important;
+        line-height: 1.45 !important;
+      }
+
+      .v2-latest-name,
+      .message-name {
+        font-size: 22px !important;
+      }
+
+      .music-player {
+        padding: 18px 12px !important;
+        overflow: hidden !important;
+      }
+
+      .track-title {
+        font-size: 20px !important;
+        line-height: 1.3 !important;
+      }
+
+      .music-player iframe {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 520px !important;
+        border-radius: 18px !important;
+        display: block !important;
+      }
+
+      input,
+      textarea,
+      select,
+      button {
+        font-size: 18px !important;
+      }
+
+      .cat-left-top,
+      .cat-right-top,
+      .cat-left-bottom,
+      .cat-right-bottom {
+        width: 95px !important;
+        height: 95px !important;
+        opacity: 0.38 !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .card {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+      }
+
+      h1 {
+        font-size: clamp(44px, 16vw, 62px) !important;
+      }
+
+      .slide-track img {
+        width: 205px !important;
+        height: 305px !important;
+      }
+
+      @keyframes scroll {
+        from { transform: translateX(0); }
+        to { transform: translateX(-1302px); }
+      }
+
+      .music-player iframe {
+        height: 500px !important;
+      }
+
+      .v2-welcome h2,
+      .story-form-title,
+      .spotify-shell-title strong {
+        font-size: 26px !important;
+      }
+
+      p {
+        font-size: 20px !important;
+      }
+    }
+
+
+    /* === V2.6: status badge moved inside menu === */
+    .top-auth-row {
+      justify-content: flex-end !important;
+    }
+
+    .menu-status-badge {
+      width: 100%;
+      min-height: 44px;
+      margin: 8px 0 12px;
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid rgba(207,111,2,0.38);
+      background:
+        linear-gradient(135deg, rgba(207,111,2,0.16), rgba(199,47,34,0.10)),
+        rgba(0,0,0,0.28);
+      color: #f5d6aa;
+      font-size: 15px;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        0 0 18px rgba(207,111,2,0.12);
+      text-align: center;
+    }
+
+    .menu-status-badge.online {
+      color: #b9ffbd;
+      border-color: rgba(72, 220, 96, 0.32);
+      background:
+        linear-gradient(135deg, rgba(32,130,52,0.22), rgba(207,111,2,0.08)),
+        rgba(0,0,0,0.28);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        0 0 18px rgba(72, 220, 96, 0.13);
+    }
+
+    @media (max-width: 900px) {
+      .top-auth-row {
+        right: 18px !important;
+      }
+
+      .top-auth-row .online-badge {
+        display: none !important;
+      }
+    }
+
+
+    /* === V2.7: autograph returns as card background === */
+    .signature-card-bg {
+      position: absolute;
+      left: 50%;
+      top: 46%;
+      width: min(980px, 125%);
+      max-width: none;
+      transform: translate(-50%, -50%) rotate(-5deg);
+      opacity: 0.075;
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
+      filter:
+        drop-shadow(0 0 18px rgba(207,111,2,0.18))
+        drop-shadow(0 0 34px rgba(255,59,47,0.10));
+      mix-blend-mode: screen;
+    }
+
+    .fan-disclaimer {
+      position: fixed;
+      left: 14px;
+      bottom: 14px;
+      z-index: 30;
+      max-width: 300px;
+      padding: 10px 13px;
+      border-radius: 16px;
+      border: 1px solid rgba(207,111,2,0.26);
+      background:
+        linear-gradient(135deg, rgba(31,9,6,0.78), rgba(7,5,4,0.72)),
+        rgba(0,0,0,0.58);
+      color: rgba(245,226,196,0.72);
+      font-size: 12px;
+      line-height: 1.4;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 0 18px rgba(207,111,2,0.10);
+    }
+
+    @media (max-width: 900px) {
+      .signature-card-bg {
+        width: 940px;
+        top: 38%;
+        opacity: 0.055;
+      }
+
+      .fan-disclaimer {
+        position: static;
+        margin: 18px auto 0;
+        max-width: 100%;
+        text-align: center;
+        font-size: 11px;
+      }
+    }
+
+
+    /* === V2.8: rules + cleaner mobile menu === */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .rules-card {
+      padding: 16px;
+      border-radius: 18px;
+      background:
+        linear-gradient(135deg, rgba(207,111,2,0.08), rgba(199,47,34,0.06)),
+        rgba(0,0,0,0.16);
+      border: 1px solid rgba(201,155,90,0.16);
+    }
+
+    .rules-title {
+      color: var(--gold-soft, #e0bd82);
+      font-size: 20px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .rules-text {
+      white-space: pre-wrap;
+      line-height: 1.65;
+      opacity: 0.9;
+    }
+
+    .rules-note {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(207,111,2,0.24);
+      background: rgba(207,111,2,0.075);
+      text-align: center;
+      color: var(--gold-soft, #e0bd82);
+      line-height: 1.5;
+    }
+
+    .compact-rules-box {
+      margin-top: 0 !important;
+      background:
+        linear-gradient(135deg, rgba(207,111,2,0.075), rgba(199,47,34,0.050)),
+        var(--panel) !important;
+    }
+
+    @media (max-width: 900px) {
+      .tabs.compact-tabs {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+        padding: 8px !important;
+      }
+
+      .tab-btn {
+        font-size: 15px !important;
+        padding: 12px 8px !important;
+        border-radius: 14px !important;
+      }
+
+      .side-menu {
+        max-height: calc(100vh - 84px) !important;
+        padding: 12px !important;
+      }
+
+      .side-menu-title {
+        font-size: 18px !important;
+        margin-bottom: 8px !important;
+      }
+
+      .side-menu button,
+      .side-menu input,
+      .side-menu .auth-btn {
+        font-size: 14px !important;
+        padding: 11px 12px !important;
+        margin-top: 7px !important;
+      }
+
+      .menu-status-badge {
+        min-height: 38px !important;
+        font-size: 14px !important;
+        margin: 6px 0 10px !important;
+      }
+
+      .side-menu-divider {
+        margin: 10px 0 !important;
+      }
+
+      .rules-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .rules-title {
+        font-size: 18px;
+      }
+
+      .rules-text {
+        font-size: 16px;
+      }
+
+      .music-player iframe {
+        height: 430px !important;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .tabs.compact-tabs {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+
+      .tab-btn {
+        font-size: 14px !important;
+        padding: 11px 6px !important;
+      }
+
+      .music-player iframe {
+        height: 410px !important;
+      }
+    }
+
+  
+    /* === V3.2: clean mobile fix, footer, animations === */
+
+    .tab.active {
+      animation: v32TabFade 0.28s ease both;
+    }
+
+    @keyframes v32TabFade {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+        filter: blur(2px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    body.logged-in .side-menu #googleLoginBtn,
+    body.logged-in .side-menu #emailInput,
+    body.logged-in .side-menu #passwordInput,
+    body.logged-in .side-menu .menu-auth-grid {
+      display: none !important;
+    }
+
+    .menu-auth-status {
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      word-break: normal !important;
+      overflow-wrap: normal !important;
+    }
+
+    .side-menu {
+      overflow-x: hidden !important;
+    }
+
+    .site-footer {
+      margin-top: 34px;
+      padding: 24px;
+      border-radius: 26px;
+      border: 1px solid rgba(207,111,2,0.28);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(207,111,2,0.15), transparent 34%),
+        radial-gradient(circle at 88% 100%, rgba(199,47,34,0.12), transparent 38%),
+        linear-gradient(145deg, rgba(31,9,6,0.62), rgba(7,5,4,0.58));
+      box-shadow:
+        0 16px 42px rgba(0,0,0,0.34),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .site-footer::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(242,179,106,0.055), transparent);
+      pointer-events: none;
+    }
+
+    .site-footer > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-logo {
+      font-family: "UnifrakturMaguntia", serif;
+      font-size: clamp(34px, 6vw, 52px);
+      color: var(--gold-soft, #e0bd82);
+      text-shadow:
+        0 0 16px rgba(207,111,2,0.30),
+        0 0 34px rgba(255,59,47,0.14);
+      margin-bottom: 6px;
+    }
+
+    .footer-subtitle {
+      color: rgba(245,226,196,0.78);
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    .footer-link {
+      width: auto;
+      margin-top: 0;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      border: 1px solid rgba(207,111,2,0.30);
+      background: rgba(255,232,196,0.045);
+      color: var(--text, #f5e2c4);
+      cursor: pointer;
+    }
+
+    .footer-link:hover {
+      background: linear-gradient(135deg, rgba(207,111,2,0.24), rgba(199,47,34,0.14));
+      border-color: rgba(207,111,2,0.52);
+    }
+
+    .footer-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .footer-stat {
+      padding: 14px 10px;
+      border-radius: 18px;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(201,155,90,0.15);
+    }
+
+    .footer-stat strong {
+      display: block;
+      color: var(--gold-soft, #e0bd82);
+      font-size: 24px;
+      margin-top: 4px;
+      text-shadow: 0 0 14px rgba(207,111,2,0.22);
+    }
+
+    .footer-bottom {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(201,155,90,0.16);
+      color: rgba(245,226,196,0.56);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 900px) {
+      .side-menu {
+        position: fixed !important;
+        top: 74px !important;
+        left: 10px !important;
+        right: 10px !important;
+        width: auto !important;
+        max-width: none !important;
+        max-height: calc(100vh - 90px) !important;
+        padding: 14px !important;
+        border-radius: 22px !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+      }
+
+      .side-menu-title {
+        font-size: 20px !important;
+      }
+
+      .side-menu button,
+      .side-menu input,
+      .side-menu .auth-btn {
+        font-size: 15px !important;
+        padding: 12px 13px !important;
+        margin-top: 8px !important;
+        line-height: 1.25 !important;
+      }
+
+      .menu-auth-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+      }
+
+      .menu-auth-status {
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        font-size: 13px !important;
+      }
+
+      .signature-card-bg {
+        width: 620px !important;
+        top: 44% !important;
+        left: 56% !important;
+        opacity: 0.035 !important;
+      }
+
+      .signature-bg {
+        width: 780px !important;
+        opacity: 0.045 !important;
+      }
+
+      .fan-disclaimer {
+        display: none !important;
+      }
+
+      .site-footer {
+        margin-top: 24px;
+        padding: 20px 14px;
+        border-radius: 22px;
+      }
+
+      .footer-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-link {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+      }
+
+      .footer-logo {
+        font-size: 38px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .side-menu {
+        left: 8px !important;
+        right: 8px !important;
+      }
+
+      .menu-auth-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .side-menu button,
+      .side-menu input,
+      .side-menu .auth-btn {
+        font-size: 14px !important;
+      }
+
+      .signature-card-bg {
+        width: 520px !important;
+        opacity: 0.03 !important;
+      }
+    }
+
+  
+
+    /* === OOES cold moon theme overrides === */
+    :root {
+      --bg: #030814 !important;
+      --bg-red: #071426 !important;
+      --card: rgba(6, 14, 28, 0.78) !important;
+      --panel: rgba(190, 225, 255, 0.060) !important;
+      --panel-strong: rgba(190, 225, 255, 0.11) !important;
+      --text: #eaf6ff !important;
+      --muted: rgba(234, 246, 255, 0.70) !important;
+      --red: #5aa9ff !important;
+      --red-hot: #7de7ff !important;
+      --orange-main: #7d8cff !important;
+      --orange-hot: #9feaff !important;
+      --gold: #83bfff !important;
+      --gold-soft: #d6f4ff !important;
+      --border: rgba(125, 231, 255, 0.24) !important;
+      --border-red: rgba(125, 231, 255, 0.34) !important;
+      --border-orange: rgba(125, 231, 255, 0.42) !important;
+      --glow-red: rgba(90, 169, 255, 0.20) !important;
+      --glow-orange: rgba(155, 124, 255, 0.16) !important;
+      --dark-red: #06111f !important;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 14% 8%, rgba(90,169,255,0.24), transparent 30%),
+        radial-gradient(circle at 78% 14%, rgba(155,124,255,0.17), transparent 34%),
+        radial-gradient(circle at 52% 96%, rgba(125,231,255,0.13), transparent 44%),
+        linear-gradient(135deg, #02050c, #07101f 46%, #030814) !important;
+    }
+
+    .card, .box {
+      border-color: rgba(125,231,255,0.24) !important;
+      background: linear-gradient(145deg, rgba(90,169,255,0.045), rgba(155,124,255,0.030)), var(--card) !important;
+      box-shadow: 0 0 42px rgba(90,169,255,0.18), 0 0 72px rgba(125,231,255,0.10), 0 26px 92px rgba(0,0,0,0.72) !important;
+    }
+
+    h1, h2, h3, .message-name, .story-title, .quote, .title { color: var(--gold-soft) !important; }
+    .tab-btn.active, .save-btn:hover, .send-btn:hover, .auth-btn:hover, .wish-arrow:hover, .story-arrow:hover, button:hover {
+      background: linear-gradient(135deg, rgba(90,169,255,0.28), rgba(155,124,255,0.18)) !important;
+      border-color: rgba(125,231,255,0.48) !important;
+      box-shadow: 0 0 18px rgba(90,169,255,0.20) !important;
+    }
+    .v2-red-line, .spotify-note { color: #9feaff !important; }
+    .heart { filter: drop-shadow(0 0 8px rgba(125,231,255,0.75)) drop-shadow(0 0 14px rgba(155,124,255,0.36)) !important; }
+
+  </style>
+</head>
+
+<body>
+
+  <img src="Autograph.jpg" class="signature-bg parallax-soft" id="parallaxSignature">
+  <div class="rain" id="rain"></div>
+
+  <img src="cats.jpg" class="cat-left-top">
+  <img src="cats2.jpg" class="cat-right-top">
+  <img src="cats3.jpg" class="cat-left-bottom">
+  <img src="cats4.jpg" class="cat-right-bottom">
+
+  <main class="card">
+    <img src="Autograph.jpg" class="signature-card-bg" alt="">
+    <section class="content">
+      <div class="top-auth-row">
+        <button class="menu-btn" id="menuToggleBtn" aria-label="Меню">☰</button>
+      </div>
+
+      <div class="side-menu" id="sideMenu">
+        <div class="side-menu-title">Меню</div>
+        <div class="menu-status-badge" id="menuStatusBadge">🔴 Гость</div>
+
+        <button data-tab-open="about">👤 О себе</button>
+        <button data-tab-open="feedback">💡 Фидбэк</button>
+        <button data-tab-open="rules">📜 Правила сайта</button>
+        <button data-tab-open="datenschutz">🔒 Datenschutz</button>
+
+        <div class="side-menu-divider"></div>
+
+        <div class="side-menu-title" style="font-size:17px;">Аккаунт</div>
+
+        <div class="auth-status menu-auth-status" id="authStatus">Статус: не вошёл</div>
+
+        <button class="auth-btn menu-auth-btn" id="googleLoginBtn">
+          🔑 Войти через Google
+        </button>
+
+        <input id="emailInput" type="email" placeholder="Email">
+        <input id="passwordInput" type="password" placeholder="Пароль">
+
+        <div class="auth-grid menu-auth-grid">
+          <button class="auth-btn" id="emailLoginBtn">Войти</button>
+          <button class="auth-btn" id="emailRegisterBtn">Регистрация</button>
+        </div>
+
+        <button class="auth-btn" id="logoutBtn">
+          🚪 Выйти
+        </button>
+
+        <button id="menuCloseBtn">✕ Закрыть</button>
+      </div>
+
+      <div class="v2-heart-mark">♥</div>
+      <h1>Для ooes</h1>
+
+      <div class="tabs compact-tabs">
+        <button class="tab-btn active" data-tab="letter">🏠 Главная</button>
+        <button class="tab-btn" data-tab="wishes">💌 Пожелания</button>
+        <button class="tab-btn" data-tab="top">🏆 Топ</button>
+        <button class="tab-btn" data-tab="stories">📖 Истории</button>
+      </div>
+
+      <div class="tab active" id="letter">
+        <div class="slider parallax-soft" id="parallaxSlider">
+          <div class="slide-track">
+            <img src="photo1.jpg"><img src="photo2.jpg"><img src="photo3.jpg">
+            <img src="photo4.jpg"><img src="photo5.jpg"><img src="photo6.jpg">
+
+            <img src="photo1.jpg"><img src="photo2.jpg"><img src="photo3.jpg">
+            <img src="photo4.jpg"><img src="photo5.jpg"><img src="photo6.jpg">
+          </div>
+        </div>
+
+        <div class="v2-home-grid">
+          <div class="panel v2-welcome">
+            <div>
+              <h2>Добро пожаловать ♥</h2>
+              <p>
+                Это место для тех, кто чувствует музыку ooes, её слова и её атмосферу.
+                Здесь хранятся воспоминания, пожелания, истории и маленькие фанатские моменты.
+              </p>
+              <div class="v2-red-line">«Спасибо, что ты есть. Спасибо за музыку.»</div>
+              <div class="small" style="text-align:left;">— от фанатов</div>
+            </div>
+
+            <div class="v2-cat-glow">🐈</div>
+          </div>
+
+          <div class="v2-side-grid">
+            <div class="panel">
+              <div class="story-form-title">Наша вселенная</div>
+              <div class="v2-universe">
+                <div>
+                  <div>❤️</div>
+                  <span class="num" id="homeHeartsCount">0</span>
+                  <span class="label">сердечек</span>
+                </div>
+                <div>
+                  <div>💌</div>
+                  <span class="num" id="homeWishesCount">0</span>
+                  <span class="label">пожеланий</span>
+                </div>
+                <div>
+                  <div>🐾</div>
+                  <span class="num" id="onlineCount">0</span>
+                  <span class="label">онлайн</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="story-form-title">Последние пожелания</div>
+              <div id="latestMessagesHome" class="v2-latest-list">
+                <div class="small">Пока нет одобренных пожеланий.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab" id="wishes">
+
+        <div class="panel compact-rules-box">
+          <div class="story-form-title">📜 Короткие правила</div>
+          <div class="small" style="text-align:left;">
+            Пиши уважительно. Без спама, рекламы, оскорблений, чужих личных данных и незаконного контента.
+          </div>
+        </div>
+
+        <div class="panel">
+          <div>👤 Твой ник:</div>
+          <input id="nicknameInput" maxlength="24" placeholder="Например: MoonCat">
+          <button class="save-btn" id="saveNicknameBtn" style="margin-top:12px;">
+            сохранить ник
+          </button>
+          <div class="small">
+            Ник можно менять. Сердечки не сбросятся, потому что они привязаны к твоему аккаунту.
+          </div>
+        </div>
+
+        <div class="panel">
+          <div>💌 Написать пожелание ooes:</div>
+          <textarea id="messageInput" maxlength="700" placeholder="Напиши свою историю или пожелание..."></textarea>
+          <button class="send-btn" id="sendMessageBtn" style="margin-top:12px;">
+            отправить на модерацию
+          </button>
+          <div class="small">
+            Сообщение появится на сайте только после одобрения.
+          </div>
+        </div>
+
+        <div class="quote" style="font-size:28px;">одобренные пожелания</div>
+        <div class="wishes-slider-wrap">
+          <button class="wish-arrow" id="wishPrev">‹</button>
+          <div class="wishes-slider" id="approvedMessages"></div>
+          <button class="wish-arrow" id="wishNext">›</button>
+        </div>
+      </div>
+
+      <div class="tab" id="top">
+        <div class="quote" style="font-size:28px;">🏆 топ по сердечкам до 100 мест</div>
+        <div id="topHearts"></div>
+      </div>
+
+      <div class="tab" id="about">
+        <div class="panel">
+          <div class="story-form-title">О себе</div>
+
+          <div class="small">
+            Здесь можно изменить ник. Твой внутренний ID скрыт от обычных посетителей и виден только в админке.
+          </div>
+
+          <input id="aboutNicknameInput" maxlength="24" placeholder="Твой ник">
+
+          <button class="save-btn" id="saveAboutNicknameBtn" style="margin-top:12px;">
+            сохранить ник
+          </button>
+
+          <div class="stats-grid">
+            <div class="stat-box">📧 Почта: <span id="aboutEmail">не вошёл</span></div>
+            <div class="stat-box">🖤 Твои сердечки: <span id="aboutHearts">0</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab" id="stories">
+
+        <div class="panel compact-rules-box">
+          <div class="story-form-title">📜 Правила историй</div>
+          <div class="small" style="text-align:left;">
+            Публикуй только свои истории. Не добавляй чужие личные данные и не выдавай себя за другого человека.
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="story-form-title">📖 Отправить историю</div>
+
+          <input id="storyTitleInput" maxlength="80" placeholder="Название истории">
+
+          <textarea
+            id="storyTextInput"
+            maxlength="10000"
+            placeholder="Напиши свою историю о ooes... Можно длиннее, до 10000 символов."
+          ></textarea>
+
+          <button class="send-btn" id="sendStoryBtn" style="margin-top:12px;">
+            отправить историю на модерацию
+          </button>
+
+          <div class="small">
+            История появится на сайте только после одобрения в админке.
+          </div>
+        </div>
+
+        <div class="quote" style="font-size:28px;">📚 Истории фанатов</div>
+
+        <div class="story-viewer">
+          <button class="story-arrow" id="storyPrev">←</button>
+          <div id="storyContainer"></div>
+          <button class="story-arrow" id="storyNext">→</button>
+        </div>
+
+        <div class="story-counter" id="storyCounter">История 0 / 0</div>
+      </div>
+
+
+      <div class="tab" id="feedback">
+        <div class="panel">
+          <div class="story-form-title">Фидбэк по сайту</div>
+
+          <div class="small">
+            Напиши, что улучшить, что сломалось или что добавить. Фидбэк виден только администратору.
+          </div>
+
+          <select id="feedbackTypeInput" class="feedback-type">
+            <option value="idea">💡 Идея</option>
+            <option value="bug">🐞 Ошибка</option>
+            <option value="design">🎨 Дизайн</option>
+            <option value="other">✉️ Другое</option>
+          </select>
+
+          <textarea id="feedbackTextInput" maxlength="1500" placeholder="Напиши свой фидбэк..."></textarea>
+
+          <button class="send-btn" id="sendFeedbackBtn" style="margin-top:12px;">
+            отправить фидбэк
+          </button>
+
+          <div class="small">
+            Данные сохраняются в Firebase: UID, email, ник, тип фидбэка и текст сообщения.
+          </div>
+        </div>
+      </div>
+
+
+      <div class="tab" id="rules">
+        <div class="panel rules-panel">
+          <div class="story-form-title">📜 Правила сайта</div>
+
+          <div class="rules-grid">
+            <div class="rules-card">
+              <div class="rules-title">✅ Можно</div>
+              <div class="rules-text">
+• писать пожелания ooes;
+• делиться своими историями и воспоминаниями;
+• оставлять идеи и фидбэк по сайту;
+• поддерживать других посетителей.
+              </div>
+            </div>
+
+            <div class="rules-card">
+              <div class="rules-title">❌ Нельзя</div>
+              <div class="rules-text">
+• оскорблять, травить или унижать других людей;
+• публиковать чужие личные данные;
+• размещать спам, рекламу и подозрительные ссылки;
+• выдавать себя за другого человека;
+• публиковать незаконный или опасный контент.
+              </div>
+            </div>
+          </div>
+
+          <div class="rules-note">
+            Администрация может удалить пожелание, историю или фидбэк, если они нарушают правила сайта.
+          </div>
+        </div>
+      </div>
+
+      <div class="tab" id="datenschutz">
+        <div class="panel">
+          <div class="story-form-title">Datenschutz / защита данных</div>
+
+          <div class="datenschutz-text">
+Этот сайт является неофициальным фан-проектом.
+
+Для работы сайта используются Firebase Authentication и Firebase Realtime Database.
+
+Какие данные могут сохраняться:
+• email аккаунта;
+• UID пользователя;
+• никнейм;
+• количество сердечек;
+• пожелания;
+• истории;
+• фидбэк по сайту;
+• время последнего посещения.
+
+Зачем это нужно:
+• чтобы работал вход на сайт;
+• чтобы сохранялся ник;
+• чтобы работали пожелания, истории и модерация;
+• чтобы администратор мог улучшать сайт по фидбэку;
+• чтобы защищать сайт от спама.
+
+Публично на сайте могут отображаться только:
+• никнейм;
+• одобренные пожелания;
+• одобренные истории;
+• количество сердечек в топе.
+
+Email и UID обычным посетителям не показываются. Они доступны только администратору в админ-панели.
+
+Данные не продаются и не используются для рекламы.
+
+Администрация может удалять материалы, которые нарушают правила сайта.
+
+Если ты хочешь удалить свои данные с сайта, напиши администратору сайта.
+          </div>
+        </div>
+      </div>
+
+      <div class="music-player">
+        <div class="spotify-shell-title">
+          <strong>Сейчас играет</strong>
+          <span class="spotify-note">♪</span>
+        </div>
+
+        <div class="track-title">🎧 Spotify-плейлист ooes</div>
+
+        <iframe
+          data-testid="embed-iframe"
+          style="border-radius:12px"
+          src="https://open.spotify.com/embed/playlist/6NySOoEjB8dVVNv6U4OswW?utm_source=generator"
+          width="100%"
+          height="352"
+          frameborder="0"
+          allowfullscreen=""
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
+
+      </div>
+
+      <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+
+        import {
+          getDatabase,
+          ref,
+          onValue,
+          runTransaction,
+          set,
+          push,
+          serverTimestamp,
+          update,
+          onDisconnect
+        } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+
+        import {
+          getAuth,
+          GoogleAuthProvider,
+          signInWithPopup,
+          signInWithEmailAndPassword,
+          createUserWithEmailAndPassword,
+          onAuthStateChanged,
+          signOut
+        } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyAnBQnt8bK-3G0zjNyIQsLY5s-_rjIV2Mk",
+          authDomain: "a-letter-for-ooes.firebaseapp.com",
+          databaseURL: "https://a-letter-for-ooes-default-rtdb.europe-west1.firebasedatabase.app",
+          projectId: "a-letter-for-ooes",
+          storageBucket: "a-letter-for-ooes.firebasestorage.app",
+          messagingSenderId: "479179895784",
+          appId: "1:479179895784:web:7f3bcd70ed9070c0816a5d"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const auth = getAuth(app);
+        const googleProvider = new GoogleAuthProvider();
+
+        let userId = null;
+        let userRef = null;
+        let presenceStarted = false;
+
+        const authStatus = document.getElementById("authStatus");
+        const nicknameInput = document.getElementById("nicknameInput");
+        const aboutNicknameInput = document.getElementById("aboutNicknameInput");
+
+        document.getElementById("googleLoginBtn").addEventListener("click", async () => {
+          try {
+            await signInWithPopup(auth, googleProvider);
+          } catch (error) {
+            alert("Ошибка Google-входа: " + error.message);
+          }
+        });
+
+        document.getElementById("emailLoginBtn").addEventListener("click", async () => {
+          const email = document.getElementById("emailInput").value.trim();
+          const password = document.getElementById("passwordInput").value;
+
+          if (!email || !password) {
+            alert("Введи email и пароль");
+            return;
+          }
+
+          try {
+            await signInWithEmailAndPassword(auth, email, password);
+          } catch (error) {
+            alert("Ошибка входа: " + error.message);
+          }
+        });
+
+        document.getElementById("emailRegisterBtn").addEventListener("click", async () => {
+          const email = document.getElementById("emailInput").value.trim();
+          const password = document.getElementById("passwordInput").value;
+
+          if (!email || password.length < 6) {
+            alert("Пароль должен быть минимум 6 символов");
+            return;
+          }
+
+          try {
+            await createUserWithEmailAndPassword(auth, email, password);
+          } catch (error) {
+            alert("Ошибка регистрации: " + error.message);
+          }
+        });
+
+        document.getElementById("logoutBtn").addEventListener("click", async () => {
+          await signOut(auth);
+        });
+
+        function requireLogin() {
+          if (!userId || !userRef) {
+            alert("Сначала войди через Google или по почте");
+            return false;
+          }
+
+          return true;
+        }
+
+
+        function startPresence(user) {
+          if (presenceStarted || !user) return;
+          presenceStarted = true;
+
+          const userPresenceRef = ref(db, "presence/" + user.uid);
+
+          set(userPresenceRef, {
+            online: true,
+            email: user.email || "",
+            nickname: localStorage.getItem("ooesNickname") || user.displayName || (user.email ? user.email.split("@")[0] : "Гость"),
+            lastSeen: Date.now()
+          });
+
+          onDisconnect(userPresenceRef).remove();
+        }
+
+        onValue(ref(db, "ooes/presence"), snapshot => {
+          const data = snapshot.val() || {};
+          const online = Object.keys(data).length;
+          const onlineBox = document.getElementById("onlineCount");
+
+          if (onlineBox) {
+            onlineBox.textContent = online;
+          }
+        });
+
+        onAuthStateChanged(auth, async (user) => {
+          document.body.classList.toggle("logged-in", !!user);
+          if (!user) {
+            userId = null;
+            userRef = null;
+            presenceStarted = false;
+            authStatus.textContent = "Статус: не вошёл";
+            document.getElementById("aboutEmail").textContent = "не вошёл";
+
+            const topBadge = document.getElementById("topAuthBadge");
+            const menuBadge = document.getElementById("menuStatusBadge");
+
+            [topBadge, menuBadge].forEach(badge => {
+              if (badge) {
+                badge.textContent = "🔴 Гость";
+                badge.classList.remove("online");
+              }
+            });
+            return;
+          }
+
+          userId = user.uid;
+          userRef = ref(db, "users/" + userId);
+          startPresence(user);
+
+          authStatus.textContent = "Статус: вошёл как " + (user.email || user.uid);
+
+          const topBadge = document.getElementById("topAuthBadge");
+          const menuBadge = document.getElementById("menuStatusBadge");
+
+          [topBadge, menuBadge].forEach(badge => {
+            if (badge) {
+              badge.textContent = "🟢 В сети";
+              badge.classList.add("online");
+            }
+          });
+
+          document.getElementById("aboutEmail").textContent = user.email || "Google-аккаунт";
+
+          const savedNickname = localStorage.getItem("ooesNickname") || "";
+          const defaultNick = user.displayName || (user.email ? user.email.split("@")[0] : "Гость");
+
+          if (!nicknameInput.value) {
+            nicknameInput.value = savedNickname || defaultNick;
+          }
+
+          if (!aboutNicknameInput.value) {
+            aboutNicknameInput.value = nicknameInput.value;
+          }
+
+          await update(userRef, {
+            email: user.email || "",
+            displayName: user.displayName || "",
+            photoURL: user.photoURL || "",
+            nickname: nicknameInput.value.trim().slice(0, 24) || defaultNick,
+            lastVisit: serverTimestamp()
+          });
+
+          onValue(userRef, snapshot => {
+            const dbUser = snapshot.val() || {};
+
+            document.getElementById("aboutHearts").textContent = dbUser.hearts || 0;
+
+            if (dbUser.nickname && !nicknameInput.value) {
+              nicknameInput.value = dbUser.nickname;
+              aboutNicknameInput.value = dbUser.nickname;
+              localStorage.setItem("ooesNickname", dbUser.nickname);
+            }
+          });
+        });
+
+
+        window.addEventListener("scroll", () => {
+          const y = window.scrollY || 0;
+          const signature = document.getElementById("parallaxSignature");
+          const slider = document.getElementById("parallaxSlider");
+
+          if (signature) {
+            signature.style.transform =
+              `translate(-50%, calc(-50% + ${y * 0.08}px)) rotate(-5deg)`;
+          }
+
+          if (slider) {
+            slider.style.transform = `translateY(${y * 0.025}px)`;
+          }
+        });
+
+
+        const menuToggleBtn = document.getElementById("menuToggleBtn");
+        const sideMenu = document.getElementById("sideMenu");
+        const menuCloseBtn = document.getElementById("menuCloseBtn");
+
+        function openTabById(tabId) {
+          document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+          document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+
+          const visibleBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+          if (visibleBtn) visibleBtn.classList.add("active");
+
+          const tab = document.getElementById(tabId);
+          if (tab) tab.classList.add("active");
+
+          if (sideMenu) sideMenu.classList.remove("open");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        if (menuToggleBtn && sideMenu) {
+          menuToggleBtn.addEventListener("click", () => {
+            sideMenu.classList.toggle("open");
+          });
+        }
+
+        if (menuCloseBtn && sideMenu) {
+          menuCloseBtn.addEventListener("click", () => {
+            sideMenu.classList.remove("open");
+          });
+        }
+
+        document.querySelectorAll("[data-tab-open]").forEach(btn => {
+          btn.addEventListener("click", () => {
+            openTabById(btn.dataset.tabOpen);
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!sideMenu || !menuToggleBtn) return;
+
+          const clickedInside =
+            sideMenu.contains(event.target) || menuToggleBtn.contains(event.target);
+
+          if (!clickedInside) {
+            sideMenu.classList.remove("open");
+          }
+        });
+
+
+        // V3.2 footer navigation and stats
+        document.querySelectorAll("[data-footer-tab]").forEach(btn => {
+          btn.addEventListener("click", () => {
+            if (typeof openTabById === "function") {
+              openTabById(btn.dataset.footerTab);
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          });
+        });
+
+        onValue(ref(db, "ooes/stats/hearts"), snapshot => {
+          const el = document.getElementById("footerHeartsCount");
+          if (el) el.textContent = snapshot.val() || 0;
+        });
+
+        onValue(ref(db, "ooes/messages"), snapshot => {
+          const data = snapshot.val() || {};
+          const count = Object.values(data).filter(item => item.status === "approved").length;
+          const el = document.getElementById("footerWishesCount");
+          if (el) el.textContent = count;
+        });
+
+        onValue(ref(db, "ooes/stories"), snapshot => {
+          const data = snapshot.val() || {};
+          const count = Object.values(data).filter(item => item.status === "approved").length;
+          const el = document.getElementById("footerStoriesCount");
+          if (el) el.textContent = count;
+        });
+
+        const rain = document.getElementById("rain");
+
+        for (let i = 0; i < 90; i++) {
+          const drop = document.createElement("span");
+          drop.className = "drop";
+          drop.style.left = Math.random() * 100 + "vw";
+          drop.style.animationDuration = 0.8 + Math.random() * 1.4 + "s";
+          drop.style.animationDelay = Math.random() * 2 + "s";
+          drop.style.opacity = 0.15 + Math.random() * 0.35;
+          drop.style.height = 45 + Math.random() * 95 + "px";
+          rain.appendChild(drop);
+        }
+
+        document.querySelectorAll(".tab-btn").forEach(btn => {
+          btn.addEventListener("click", () => {
+            document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+            document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+            btn.classList.add("active");
+            document.getElementById(btn.dataset.tab).classList.add("active");
+          });
+        });
+
+        const visitedKey = "ooesVisited";
+
+        if (!sessionStorage.getItem(visitedKey)) {
+          sessionStorage.setItem(visitedKey, "yes");
+
+          runTransaction(ref(db, "ooes/stats/views"), current => {
+            return (current || 0) + 1;
+          });
+        }
+
+        document.getElementById("saveNicknameBtn").addEventListener("click", async () => {
+          if (!requireLogin()) return;
+
+          const nickname = nicknameInput.value.trim().slice(0, 24);
+
+          if (!nickname) {
+            alert("Напиши ник");
+            return;
+          }
+
+          localStorage.setItem("ooesNickname", nickname);
+          aboutNicknameInput.value = nickname;
+
+          await update(userRef, {
+            nickname: nickname,
+            updatedAt: serverTimestamp()
+          });
+
+          alert("Ник сохранён");
+        });
+
+        document.getElementById("saveAboutNicknameBtn").addEventListener("click", async () => {
+          if (!requireLogin()) return;
+
+          const nickname = aboutNicknameInput.value.trim().slice(0, 24);
+
+          if (!nickname) {
+            alert("Напиши ник");
+            return;
+          }
+
+          localStorage.setItem("ooesNickname", nickname);
+          nicknameInput.value = nickname;
+
+          await update(userRef, {
+            nickname: nickname,
+            updatedAt: serverTimestamp()
+          });
+
+          alert("Ник сохранён");
+        });
+
+        document.getElementById("sendMessageBtn").addEventListener("click", async () => {
+          if (!requireLogin()) return;
+
+          const text = document.getElementById("messageInput").value.trim();
+          const nickname = nicknameInput.value.trim() || aboutNicknameInput.value.trim() || "Гость";
+          const lastMessageTime = Number(localStorage.getItem("lastMessageTime") || 0);
+          const now = Date.now();
+
+          if (now - lastMessageTime < 60000) {
+            alert("Можно отправлять только 1 сообщение в минуту");
+            return;
+          }
+
+          if (text.length < 5) {
+            alert("Сообщение слишком короткое");
+            return;
+          }
+
+          const newMessageRef = push(ref(db, "ooes/messages"));
+
+          await set(newMessageRef, {
+            userId: userId,
+            nickname: nickname.slice(0, 24),
+            text: text.slice(0, 700),
+            status: "pending",
+            createdAt: serverTimestamp()
+          });
+
+          localStorage.setItem("lastMessageTime", String(now));
+          document.getElementById("messageInput").value = "";
+          alert("Отправлено на модерацию");
+        });
+
+        document.getElementById("sendStoryBtn").addEventListener("click", async () => {
+          if (!requireLogin()) return;
+
+          const title = document.getElementById("storyTitleInput").value.trim();
+          const text = document.getElementById("storyTextInput").value.trim();
+          const nickname = nicknameInput.value.trim() || aboutNicknameInput.value.trim() || "Гость";
+
+          const lastStoryTime = Number(localStorage.getItem("lastStoryTime") || 0);
+          const now = Date.now();
+
+          if (now - lastStoryTime < 60000) {
+            alert("Можно отправлять только 1 историю в минуту");
+            return;
+          }
+
+          if (title.length < 3) {
+            alert("Напиши название истории");
+            return;
+          }
+
+          if (text.length < 20) {
+            alert("История слишком короткая");
+            return;
+          }
+
+          const newStoryRef = push(ref(db, "ooes/stories"));
+
+          await set(newStoryRef, {
+            userId: userId,
+            nickname: nickname.slice(0, 24),
+            title: title.slice(0, 80),
+            text: text.slice(0, 10000),
+            status: "pending",
+            createdAt: serverTimestamp()
+          });
+
+          localStorage.setItem("lastStoryTime", String(now));
+          document.getElementById("storyTitleInput").value = "";
+          document.getElementById("storyTextInput").value = "";
+
+          alert("История отправлена на модерацию");
+        });
+
+
+        document.getElementById("sendFeedbackBtn").addEventListener("click", async () => {
+          if (!requireLogin()) return;
+
+          const type = document.getElementById("feedbackTypeInput").value;
+          const text = document.getElementById("feedbackTextInput").value.trim();
+          const nickname = nicknameInput.value.trim() || aboutNicknameInput.value.trim() || "Гость";
+          const user = auth.currentUser;
+
+          const lastFeedbackTime = Number(localStorage.getItem("lastFeedbackTime") || 0);
+          const now = Date.now();
+
+          if (now - lastFeedbackTime < 60000) {
+            alert("Можно отправлять только 1 фидбэк в минуту");
+            return;
+          }
+
+          if (text.length < 5) {
+            alert("Фидбэк слишком короткий");
+            return;
+          }
+
+          const newFeedbackRef = push(ref(db, "ooes/feedback"));
+
+          await set(newFeedbackRef, {
+            userId: userId,
+            email: user?.email || "",
+            nickname: nickname.slice(0, 24),
+            type: type,
+            text: text.slice(0, 1500),
+            status: "new",
+            createdAt: serverTimestamp()
+          });
+
+          localStorage.setItem("lastFeedbackTime", String(now));
+          document.getElementById("feedbackTextInput").value = "";
+
+          alert("Спасибо! Фидбэк отправлен");
+        });
+
+
+        onValue(ref(db, "ooes/stats/hearts"), snapshot => {
+          const value = snapshot.val() || 0;
+          const homeHearts = document.getElementById("homeHeartsCount");
+          if (homeHearts) homeHearts.textContent = value;
+        });
+
+        onValue(ref(db, "ooes/messages"), snapshot => {
+          const box = document.getElementById("approvedMessages");
+          box.innerHTML = "";
+          const messages = snapshot.val();
+
+          if (!messages) {
+            box.innerHTML = `<div class="small">Пока нет одобренных пожеланий.</div>`;
+            return;
+          }
+
+          const approved = Object.values(messages)
+            .filter(msg => msg.status === "approved")
+            .sort((a, b) => (b.approvedAt || b.createdAt || 0) - (a.approvedAt || a.createdAt || 0));
+
+          const homeWishes = document.getElementById("homeWishesCount");
+          if (homeWishes) homeWishes.textContent = approved.length;
+
+          const latestHome = document.getElementById("latestMessagesHome");
+
+          if (approved.length === 0) {
+            box.innerHTML = `<div class="small">Пока нет одобренных пожеланий.</div>`;
+            if (latestHome) latestHome.innerHTML = `<div class="small">Пока нет одобренных пожеланий.</div>`;
+            return;
+          }
+
+          if (latestHome) {
+            latestHome.innerHTML = "";
+            approved.slice(0, 3).forEach(msg => {
+              const latestItem = document.createElement("div");
+              latestItem.className = "v2-latest-item";
+              latestItem.innerHTML = `
+                <div class="v2-latest-name">💌 ${escapeHTML(msg.nickname || "Гость")}</div>
+                <div>${escapeHTML((msg.text || "").slice(0, 115))}${(msg.text || "").length > 115 ? "..." : ""}</div>
+              `;
+              latestHome.appendChild(latestItem);
+            });
+          }
+
+          approved.forEach(msg => {
+            const item = document.createElement("div");
+            item.className = "message-item";
+            item.innerHTML = `
+              <div class="message-name">♥ ${escapeHTML(msg.nickname || "Гость")}</div>
+              <div class="message-text">${escapeHTML(msg.text || "")}</div>
+            `;
+            box.appendChild(item);
+          });
+        });
+
+        document.getElementById("wishPrev").addEventListener("click", () => {
+          document.getElementById("approvedMessages").scrollBy({
+            left: -320,
+            behavior: "smooth"
+          });
+        });
+
+        document.getElementById("wishNext").addEventListener("click", () => {
+          document.getElementById("approvedMessages").scrollBy({
+            left: 320,
+            behavior: "smooth"
+          });
+        });
+
+        let approvedStories = [];
+        let currentStory = 0;
+
+        onValue(ref(db, "ooes/stories"), snapshot => {
+          const data = snapshot.val();
+
+          const box = document.getElementById("storyContainer");
+
+          if (!data) {
+            approvedStories = [];
+            currentStory = 0;
+            box.innerHTML = "<div class='small'>Пока нет опубликованных историй.</div>";
+            document.getElementById("storyCounter").textContent = "История 0 / 0";
+            return;
+          }
+
+          approvedStories = Object.values(data)
+            .filter(story => story.status === "approved")
+            .sort((a, b) => (b.approvedAt || b.createdAt || 0) - (a.approvedAt || a.createdAt || 0));
+
+          currentStory = 0;
+          renderStory();
+        });
+
+        function renderStory() {
+          const box = document.getElementById("storyContainer");
+
+          if (approvedStories.length === 0) {
+            box.innerHTML = "<div class='small'>Пока нет опубликованных историй.</div>";
+            document.getElementById("storyCounter").textContent = "История 0 / 0";
+            return;
+          }
+
+          const story = approvedStories[currentStory];
+
+          box.innerHTML = `
+            <div class="story-card">
+              <div class="story-title">${escapeHTML(story.title || "История")}</div>
+              <div class="story-author">✍ ${escapeHTML(story.nickname || "Гость")}</div>
+              <div class="story-text">${escapeHTML(story.text || "")}</div>
+            </div>
+          `;
+
+          document.getElementById("storyCounter").textContent =
+            "История " + (currentStory + 1) + " / " + approvedStories.length;
+        }
+
+        document.getElementById("storyPrev").addEventListener("click", () => {
+          if (approvedStories.length === 0) return;
+
+          currentStory--;
+
+          if (currentStory < 0) {
+            currentStory = approvedStories.length - 1;
+          }
+
+          renderStory();
+        });
+
+        document.getElementById("storyNext").addEventListener("click", () => {
+          if (approvedStories.length === 0) return;
+
+          currentStory++;
+
+          if (currentStory >= approvedStories.length) {
+            currentStory = 0;
+          }
+
+          renderStory();
+        });
+
+        onValue(ref(db, "ooes/users"), snapshot => {
+          const users = snapshot.val();
+          const topHeartsBox = document.getElementById("topHearts");
+
+          if (!users) {
+            topHeartsBox.innerHTML = "<div class='small'>Нет данных пользователей</div>";
+            return;
+          }
+
+          renderTop(users, "hearts", "topHearts", "❤️");
+        });
+
+        function renderTop(users, field, elementId, icon) {
+          const box = document.getElementById(elementId);
+          box.innerHTML = "";
+
+          const grouped = {};
+
+          Object.entries(users || {}).forEach(([id, user]) => {
+            const nickname = user.nickname || user.displayName || ("Гость_" + id.slice(-4));
+            const value = Number(user[field] || 0);
+
+            if (!grouped[nickname]) {
+              grouped[nickname] = 0;
+            }
+
+            grouped[nickname] += value;
+          });
+
+          const sorted = Object.entries(grouped)
+            .map(([nickname, value]) => ({ nickname, value }))
+            .filter(user => user.value > 0)
+            .sort((a, b) => b.value - a.value)
+            .slice(0, 100);
+
+          if (sorted.length === 0) {
+            box.innerHTML = "<div class='small'>Пока нет данных</div>";
+            return;
+          }
+
+          sorted.forEach((user, index) => {
+            const item = document.createElement("div");
+            item.className = "top-item";
+            item.innerHTML = `
+              <span>#${index + 1} ${escapeHTML(user.nickname)}</span>
+              <span>${icon} ${user.value}</span>
+            `;
+            box.appendChild(item);
+          });
+        }
+
+        const hearts = ["❤️"];
+        let lastHeartClick = 0;
+
+        document.addEventListener("click", function(e) {
+          const heart = document.createElement("div");
+          heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+          heart.className = "heart";
+          heart.style.left = e.pageX + "px";
+          heart.style.top = e.pageY + "px";
+          document.body.appendChild(heart);
+
+          setTimeout(() => {
+            heart.remove();
+          }, 2000);
+
+          if (!userId) return;
+
+          const now = Date.now();
+
+          
+
+          lastHeartClick = now;
+
+          runTransaction(ref(db, "ooes/stats/hearts"), current => {
+            return (current || 0) + 1;
+          });
+
+          runTransaction(ref(db, "users/" + userId + "/hearts"), current => {
+            return (current || 0) + 1;
+          });
+        });
+        function escapeHTML(text) {
+          return String(text)
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+        }
+      </script>
+
+      <footer class="site-footer">
+        <div class="footer-logo">♥ Для ooes</div>
+
+        <div class="footer-subtitle">
+          Фанатский проект, созданный с любовью.<br>
+          Место для пожеланий, историй, музыки и маленьких воспоминаний.
+        </div>
+
+        <div class="footer-links">
+          <button class="footer-link" data-footer-tab="rules">📜 Правила сайта</button>
+          <button class="footer-link" data-footer-tab="feedback">💡 Фидбэк</button>
+          <button class="footer-link" data-footer-tab="datenschutz">🔒 Datenschutz</button>
+        </div>
+
+        <div class="footer-stats">
+          <div class="footer-stat">❤️ Сердечки <strong id="footerHeartsCount">0</strong></div>
+          <div class="footer-stat">💌 Пожелания <strong id="footerWishesCount">0</strong></div>
+          <div class="footer-stat">📖 Истории <strong id="footerStoriesCount">0</strong></div>
+        </div>
+
+        <div class="footer-bottom">
+          Неофициальный фанатский сайт. Все права на музыку, изображения и материалы принадлежат их правообладателям.
+        </div>
+      </footer>
+
+    </section>
+  </main>
+</body>
+</html>
