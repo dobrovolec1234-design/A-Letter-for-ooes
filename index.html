@@ -519,8 +519,8 @@
       --red: #c82f22;
       --red-hot: #ff3b2f;
       --orange: #e06f2f;
-      --gold: #c99b5a;
-      --gold-soft: #e0bd82;
+      --gold: #83bfff;
+      --gold-soft: #d6f4ff;
       --border: rgba(201, 155, 90, 0.24);
       --border-red: rgba(255, 59, 47, 0.34);
       --glow-red: rgba(255, 59, 47, 0.22);
@@ -820,10 +820,10 @@
     }
 
 
-    /* === V2.1: warm #cf6f02 gradient accent === */
+    /* === V2.1: warm #5aa9ff gradient accent === */
     :root {
-      --orange-main: #cf6f02;
-      --orange-hot: #ff8a18;
+      --orange-main: #5aa9ff;
+      --orange-hot: #9feaff;
       --orange-soft: #f2b36a;
       --dark-red: #2a0805;
     }
@@ -1457,7 +1457,7 @@
     }
 
     .rules-title {
-      color: var(--gold-soft, #e0bd82);
+      color: var(--gold-soft, #d6f4ff);
       font-size: 20px;
       margin-bottom: 10px;
       font-weight: 700;
@@ -1476,7 +1476,7 @@
       border: 1px solid rgba(207,111,2,0.24);
       background: rgba(207,111,2,0.075);
       text-align: center;
-      color: var(--gold-soft, #e0bd82);
+      color: var(--gold-soft, #d6f4ff);
       line-height: 1.5;
     }
 
@@ -1633,7 +1633,7 @@
     .footer-logo {
       font-family: "UnifrakturMaguntia", serif;
       font-size: clamp(34px, 6vw, 52px);
-      color: var(--gold-soft, #e0bd82);
+      color: var(--gold-soft, #d6f4ff);
       text-shadow:
         0 0 16px rgba(207,111,2,0.30),
         0 0 34px rgba(255,59,47,0.14);
@@ -1687,7 +1687,7 @@
 
     .footer-stat strong {
       display: block;
-      color: var(--gold-soft, #e0bd82);
+      color: var(--gold-soft, #d6f4ff);
       font-size: 24px;
       margin-top: 4px;
       text-shadow: 0 0 14px rgba(207,111,2,0.22);
@@ -2242,23 +2242,16 @@ Email и UID обычным посетителям не показываются
 
       <div class="music-player">
         <div class="spotify-shell-title">
-          <h2>Музыка ooes</h2>
+          <strong>🌙 Саундтрек этого места</strong>
+          <span class="spotify-note">♪</span>
+        </div>
 
-<p>
-Иногда одна песня может напомнить целую историю.
-Ниже собран плейлист с музыкой ooes.
-</p>
+        <div class="track-title">Иногда одна песня может напомнить целую историю. Ниже собран плейлист с музыкой ooes.</div>
 
-<iframe
-  style="border-radius:12px"
-  src="https://open.spotify.com/embed/playlist/4v515v3HCoxkURzVuP5HSW?utm_source=generator"
-  width="100%"
-  height="352"
-  frameborder="0"
-  allowfullscreen=""
-  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-  loading="lazy">
-</iframe>
+        <div class="music-links">
+          <a href="https://open.spotify.com/search/ooes" target="_blank" rel="noopener">Spotify</a>
+          <a href="https://music.youtube.com/search?q=ooes" target="_blank" rel="noopener">YouTube Music</a>
+          <a href="https://music.apple.com/search?term=ooes" target="_blank" rel="noopener">Apple Music</a>
         </div>
       </div>
 
