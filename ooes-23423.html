@@ -777,13 +777,14 @@
     const ADMIN_EMAIL = "dobrovolec1234@gmail.com";
 
     const firebaseConfig = {
-      apiKey: "AIzaSyAnBQnt8bK-3G0zjNyIQsLY5s-_rjIV2Mk",
-      authDomain: "a-letter-for-ooes.firebaseapp.com",
-      databaseURL: "https://a-letter-for-ooes-default-rtdb.europe-west1.firebasedatabase.app",
-      projectId: "a-letter-for-ooes",
-      storageBucket: "a-letter-for-ooes.firebasestorage.app",
-      messagingSenderId: "479179895784",
-      appId: "1:479179895784:web:7f3bcd70ed9070c0816a5d"
+      apiKey: "AIzaSyDSP_YXjmBk7ghGTPKfmn0JXfuYPmqS-kk",
+      authDomain: "ooes-61f2e.firebaseapp.com",
+      databaseURL: "https://ooes-61f2e-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "ooes-61f2e",
+      storageBucket: "ooes-61f2e.firebasestorage.app",
+      messagingSenderId: "106749560070",
+      appId: "1:106749560070:web:58eec137ef71932859ca87",
+      measurementId: "G-VR00J4Z0C7"
     };
 
     const app = initializeApp(firebaseConfig);
@@ -888,31 +889,31 @@
     });
 
     function startListeners() {
-      onValue(ref(db, "ooes/stats"), snapshot => {
+      onValue(ref(db, "stats"), snapshot => {
         allStats = snapshot.val() || {};
         renderDashboard();
       });
 
-      onValue(ref(db, "ooes/users"), snapshot => {
+      onValue(ref(db, "users"), snapshot => {
         allUsers = snapshot.val() || {};
         renderDashboard();
         renderUsers();
         renderTop();
       });
 
-      onValue(ref(db, "ooes/messages"), snapshot => {
+      onValue(ref(db, "messages"), snapshot => {
         allMessages = snapshot.val() || {};
         renderDashboard();
         renderMessages();
       });
 
-      onValue(ref(db, "ooes/stories"), snapshot => {
+      onValue(ref(db, "stories"), snapshot => {
         allStories = snapshot.val() || {};
         renderDashboard();
         renderStories();
       });
 
-      onValue(ref(db, "ooes/feedback"), snapshot => {
+      onValue(ref(db, "feedback"), snapshot => {
         allFeedback = snapshot.val() || {};
         renderFeedback();
       });
@@ -1167,21 +1168,21 @@
     };
 
     window.approveItem = async function(path, id) {
-      await update(ref(db, "ooes/" + path + "/" + id), {
+      await update(ref(db, path + "/" + id), {
         status: "approved",
         approvedAt: Date.now()
       });
     };
 
     window.returnToPending = async function(path, id) {
-      await update(ref(db, "ooes/" + path + "/" + id), {
+      await update(ref(db, path + "/" + id), {
         status: "pending"
       });
     };
 
     window.deleteItem = async function(path, id) {
       if (confirm("Удалить?")) {
-        await remove(ref(db, "ooes/" + path + "/" + id));
+        await remove(ref(db, path + "/" + id));
       }
     };
 
@@ -1290,19 +1291,19 @@
           });
         });
 
-        onValue(ref(db, "ooes/stats/hearts"), snapshot => {
+        onValue(ref(db, "stats/hearts"), snapshot => {
           const footerHearts = document.getElementById("footerHeartsCount");
           if (footerHearts) footerHearts.textContent = snapshot.val() || 0;
         });
 
-        onValue(ref(db, "ooes/messages"), snapshot => {
+        onValue(ref(db, "messages"), snapshot => {
           const data = snapshot.val() || {};
           const approved = Object.values(data).filter(item => item.status === "approved").length;
           const footerWishes = document.getElementById("footerWishesCount");
           if (footerWishes) footerWishes.textContent = approved;
         });
 
-        onValue(ref(db, "ooes/stories"), snapshot => {
+        onValue(ref(db, "stories"), snapshot => {
           const data = snapshot.val() || {};
           const approved = Object.values(data).filter(item => item.status === "approved").length;
           const footerStories = document.getElementById("footerStoriesCount");
@@ -2027,13 +2028,14 @@
     const ADMIN_EMAIL = "dobrovolec1234@gmail.com";
 
     const firebaseConfig = {
-      apiKey: "AIzaSyAnBQnt8bK-3G0zjNyIQsLY5s-_rjIV2Mk",
-      authDomain: "a-letter-for-ooes.firebaseapp.com",
-      databaseURL: "https://a-letter-for-ooes-default-rtdb.europe-west1.firebasedatabase.app",
-      projectId: "a-letter-for-ooes",
-      storageBucket: "a-letter-for-ooes.firebasestorage.app",
-      messagingSenderId: "479179895784",
-      appId: "1:479179895784:web:7f3bcd70ed9070c0816a5d"
+      apiKey: "AIzaSyDSP_YXjmBk7ghGTPKfmn0JXfuYPmqS-kk",
+      authDomain: "ooes-61f2e.firebaseapp.com",
+      databaseURL: "https://ooes-61f2e-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "ooes-61f2e",
+      storageBucket: "ooes-61f2e.firebasestorage.app",
+      messagingSenderId: "106749560070",
+      appId: "1:106749560070:web:58eec137ef71932859ca87",
+      measurementId: "G-VR00J4Z0C7"
     };
 
     const app = initializeApp(firebaseConfig);
@@ -2138,31 +2140,31 @@
     });
 
     function startListeners() {
-      onValue(ref(db, "ooes/stats"), snapshot => {
+      onValue(ref(db, "stats"), snapshot => {
         allStats = snapshot.val() || {};
         renderDashboard();
       });
 
-      onValue(ref(db, "ooes/users"), snapshot => {
+      onValue(ref(db, "users"), snapshot => {
         allUsers = snapshot.val() || {};
         renderDashboard();
         renderUsers();
         renderTop();
       });
 
-      onValue(ref(db, "ooes/messages"), snapshot => {
+      onValue(ref(db, "messages"), snapshot => {
         allMessages = snapshot.val() || {};
         renderDashboard();
         renderMessages();
       });
 
-      onValue(ref(db, "ooes/stories"), snapshot => {
+      onValue(ref(db, "stories"), snapshot => {
         allStories = snapshot.val() || {};
         renderDashboard();
         renderStories();
       });
 
-      onValue(ref(db, "ooes/feedback"), snapshot => {
+      onValue(ref(db, "feedback"), snapshot => {
         allFeedback = snapshot.val() || {};
         renderFeedback();
       });
@@ -2417,21 +2419,21 @@
     };
 
     window.approveItem = async function(path, id) {
-      await update(ref(db, "ooes/" + path + "/" + id), {
+      await update(ref(db, path + "/" + id), {
         status: "approved",
         approvedAt: Date.now()
       });
     };
 
     window.returnToPending = async function(path, id) {
-      await update(ref(db, "ooes/" + path + "/" + id), {
+      await update(ref(db, path + "/" + id), {
         status: "pending"
       });
     };
 
     window.deleteItem = async function(path, id) {
       if (confirm("Удалить?")) {
-        await remove(ref(db, "ooes/" + path + "/" + id));
+        await remove(ref(db, path + "/" + id));
       }
     };
 
@@ -2540,19 +2542,19 @@
           });
         });
 
-        onValue(ref(db, "ooes/stats/hearts"), snapshot => {
+        onValue(ref(db, "stats/hearts"), snapshot => {
           const footerHearts = document.getElementById("footerHeartsCount");
           if (footerHearts) footerHearts.textContent = snapshot.val() || 0;
         });
 
-        onValue(ref(db, "ooes/messages"), snapshot => {
+        onValue(ref(db, "messages"), snapshot => {
           const data = snapshot.val() || {};
           const approved = Object.values(data).filter(item => item.status === "approved").length;
           const footerWishes = document.getElementById("footerWishesCount");
           if (footerWishes) footerWishes.textContent = approved;
         });
 
-        onValue(ref(db, "ooes/stories"), snapshot => {
+        onValue(ref(db, "stories"), snapshot => {
           const data = snapshot.val() || {};
           const approved = Object.values(data).filter(item => item.status === "approved").length;
           const footerStories = document.getElementById("footerStoriesCount");
